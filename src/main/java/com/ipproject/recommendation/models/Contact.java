@@ -1,8 +1,9 @@
 package com.ipproject.recommendation.models;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
+import java.util.UUID;
 
-
+@Entity
 public class Contact {
     public String getPhoneNumber() {
         return phoneNumber;
@@ -20,6 +21,17 @@ public class Contact {
         this.email = email;
     }
 
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private UUID id;
     private String phoneNumber;
     private String email;
 }

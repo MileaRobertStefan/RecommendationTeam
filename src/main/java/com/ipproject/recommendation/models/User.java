@@ -68,6 +68,7 @@ public class User {
     private Integer medicalHistoryId;
     private Integer contact;
 
+
     public void setAddress(Integer address) {
         this.address = address;
     }

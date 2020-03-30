@@ -1,7 +1,10 @@
 package com.ipproject.recommendation.models;
 
-import javax.persistence.Entity;
+import java.util.UUID;
 
+import javax.persistence.*;
+
+@Entity
 public class Address {
 
 
@@ -37,6 +40,16 @@ public class Address {
         this.streetNumber = streetNumber;
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    public UUID getId() {return id;}
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    private UUID id;
     private String country;
     private String streetName;
     private String city;
