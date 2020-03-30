@@ -11,12 +11,14 @@ import { MatTabsModule } from '@angular/material/tabs';
 import {DemoMaterialModule} from './material-module'
 import {AutocompleteFilterExample} from './simptomsForm/auto-complete-example'
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
-//import {MdSelectModule} from '@angular/material/select';
+import {SelectOverviewExample} from './addition'
+// import {MdSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AutocompleteFilterExample
+    AutocompleteFilterExample,
+    SelectOverviewExample
   ],
   imports: [
  // MdSelectModule,
@@ -29,10 +31,11 @@ import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    DemoMaterialModule,
+    DemoMaterialModule
   ],
-  entryComponents:[AutocompleteFilterExample],
-  providers: [ { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'legacy' } },],
-  bootstrap: [AppComponent,AutocompleteFilterExample],
+  entryComponents:[AutocompleteFilterExample, SelectOverviewExample],
+  providers: [ { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'legacy' } }],
+  bootstrap: [AppComponent, AutocompleteFilterExample, SelectOverviewExample],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
