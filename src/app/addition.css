@@ -1,0 +1,24 @@
+.form-field {
+    padding: 10px;
+    margin: 5px;
+    max-width:800px;
+    width: 85%;
+}
+
+h4 {
+    margin: 20px;
+}
+
+mat-slider {
+    width: 500px;
+    margin-left: 100px;
+  }
+
+
+button {
+    display: block;
+    color: accent;
+    margin-left: 20px;
+    box-shadow: none;
+    margin-top: 100px;
+}
