@@ -6,6 +6,11 @@ import {map, startWith} from 'rxjs/operators';
 /**
  * @title Filter autocomplete
  */
+
+interface Choice {
+  value: string;
+  viewValue: string;
+}
 @Component({
   selector: 'auto-complete-example',
   templateUrl: 'auto-complete-example.html',
@@ -15,10 +20,14 @@ export class AutocompleteFilterExample implements OnInit {
   myControl = new FormControl();
   mySecondControl = new FormControl();
   chosenZone: string;
-  options: string[] = ['Cap', 'Stomac', 'Muschi'];
-  zoneOptions : Object ={Cap:['Migrena','Ameteala'], Stomac: ['Arsuri', 'Greata'], Muschi:['Durere os']};
+  options: string[] = ['Cap', 'Stomac', 'Membre'];
+  zoneOptions : Object ={Cap:['Migrenă','Amețeală'], Stomac: ['Arsuri', 'Greață'], Membre:['Durere os']};
   filteredOptions: Observable<string[]>
   filteredSecondOptions : Observable<string[]>;
+  choices: Choice[] = [
+    {value: 'da-0', viewValue: 'Da'},
+    {value: 'nu-1', viewValue: 'Nu'}
+  ];
 
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges
@@ -38,16 +47,16 @@ export class AutocompleteFilterExample implements OnInit {
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     this.chosenZone = this.myControl.value;
-    console.log(this.chosenZone)
-  
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
   private _filter2(value: string, chosenZone):string[] {
       const filterValue=value.toLowerCase();
-      console.log(this.mySecondControl)
-      if(chosenZone !== null){ 
+      console.log(this.zoneOptions[chosenZone])
+      if(chosenZone !== null){
         return this.zoneOptions[chosenZone].filter(option=>option.toLowerCase().includes(filterValue))
       }
-      return this.zoneOptions[chosenZone];
+      else {
+        return []
+      }
   }
 }
