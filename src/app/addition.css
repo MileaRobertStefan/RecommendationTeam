@@ -16,9 +16,17 @@ mat-slider {
 
 
 button {
-    display: block;
-    color: accent;
-    margin-left: 20px;
+    display: flex;
     box-shadow: none;
-    margin-top: 100px;
+    margin-top: 30px;
+    margin-right: 0px;
+}
+
+.button-container{
+    display: flex;
+    flex:1;
+    flex-direction :row;
+    justify-content:flex-end;
+    align-content: flex-end;
+    padding-right: 20%;
 }

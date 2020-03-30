@@ -6,6 +6,11 @@ import {map, startWith} from 'rxjs/operators';
 /**
  * @title Filter autocomplete
  */
+
+interface Choice {
+  value: string;
+  viewValue: string;
+}
 @Component({
   selector: 'auto-complete-example',
   templateUrl: 'auto-complete-example.html',
@@ -14,10 +19,15 @@ import {map, startWith} from 'rxjs/operators';
 export class AutocompleteFilterExample implements OnInit {
   myControl = new FormControl();
   mySecondControl = new FormControl();
-  options: string[] = ['Cap', 'Stomac', 'Muschi'];
-  zoneOptions : string[] =['Migrena','Ameteala', 'Arsuri', 'Greata','Durere os'];
-  filteredOptions: Observable<string[]>;
+  chosenZone: string;
+  options: string[] = ['Cap', 'Stomac', 'Membre'];
+  zoneOptions : Object ={Cap:['Migrenă','Amețeală'], Stomac: ['Arsuri', 'Greață'], Membre:['Durere os']};
+  filteredOptions: Observable<string[]>
   filteredSecondOptions : Observable<string[]>;
+  choices: Choice[] = [
+    {value: 'da-0', viewValue: 'Da'},
+    {value: 'nu-1', viewValue: 'Nu'}
+  ];
 
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges
@@ -28,18 +38,25 @@ export class AutocompleteFilterExample implements OnInit {
      this.filteredSecondOptions = this.mySecondControl.valueChanges 
      .pipe(
          startWith(''),
-         map(value=>this._filter2(value))
+         map(value=>this._filter2(value,this.chosenZone))
      ) ;
+     this.filteredOptions.subscribe();
+     this.filteredSecondOptions.subscribe();
   }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-
+    this.chosenZone = this.myControl.value;
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
-  private _filter2(value: string):string[] {
+  private _filter2(value: string, chosenZone):string[] {
       const filterValue=value.toLowerCase();
-      return this.zoneOptions.filter(option=>option.toLowerCase().includes(filterValue))
+      console.log(this.zoneOptions[chosenZone])
+      if(chosenZone !== null){
+        return this.zoneOptions[chosenZone].filter(option=>option.toLowerCase().includes(filterValue))
+      }
+      else {
+        return []
+      }
   }
 }
-

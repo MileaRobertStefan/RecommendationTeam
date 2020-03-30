@@ -9,7 +9,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import {DemoMaterialModule} from './material-module'
-import {AutocompleteFilterExample} from './auto-complete-example'
+import {AutocompleteFilterExample} from './simptomsForm/auto-complete-example'
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import {SelectOverviewExample} from './addition'
 // import {MdSelectModule} from '@angular/material/select';
