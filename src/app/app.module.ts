@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -8,11 +8,15 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
+import {DemoMaterialModule} from './material-module'
+import {AutocompleteFilterExample} from './auto-complete-example'
+import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 //import {MdSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AutocompleteFilterExample
   ],
   imports: [
  // MdSelectModule,
@@ -24,9 +28,11 @@ import { MatTabsModule } from '@angular/material/tabs';
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    DemoMaterialModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  entryComponents:[AutocompleteFilterExample],
+  providers: [ { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'legacy' } },],
+  bootstrap: [AppComponent,AutocompleteFilterExample],
 })
 export class AppModule { }
