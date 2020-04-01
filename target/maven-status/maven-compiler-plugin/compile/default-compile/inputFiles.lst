@@ -1,1 +1,13 @@
-D:\Facultate\Anul2\IP\recommandationTeam\recommendation\src\main\java\com\ipproject\recommendation\RecommendationApplication.java
+/Users/mihnea.voronca/Desktop/IP2/ip_project/RecommendationTeam/src/main/java/com/ipproject/recommendation/controllers/ContactController.java
+/Users/mihnea.voronca/Desktop/IP2/ip_project/RecommendationTeam/src/main/java/com/ipproject/recommendation/service/ContactService.java
+/Users/mihnea.voronca/Desktop/IP2/ip_project/RecommendationTeam/src/main/java/com/ipproject/recommendation/models/User.java
+/Users/mihnea.voronca/Desktop/IP2/ip_project/RecommendationTeam/src/main/java/com/ipproject/recommendation/models/Contact.java
+/Users/mihnea.voronca/Desktop/IP2/ip_project/RecommendationTeam/src/main/java/com/ipproject/recommendation/service/UserService.java
+/Users/mihnea.voronca/Desktop/IP2/ip_project/RecommendationTeam/src/main/java/com/ipproject/recommendation/RecommendationApplication.java
+/Users/mihnea.voronca/Desktop/IP2/ip_project/RecommendationTeam/src/main/java/com/ipproject/recommendation/models/Address.java
+/Users/mihnea.voronca/Desktop/IP2/ip_project/RecommendationTeam/src/main/java/com/ipproject/recommendation/controllers/UsersController.java
+/Users/mihnea.voronca/Desktop/IP2/ip_project/RecommendationTeam/src/main/java/com/ipproject/recommendation/service/AddressService.java
+/Users/mihnea.voronca/Desktop/IP2/ip_project/RecommendationTeam/src/main/java/com/ipproject/recommendation/repository/ContactRepository.java
+/Users/mihnea.voronca/Desktop/IP2/ip_project/RecommendationTeam/src/main/java/com/ipproject/recommendation/repository/AddressRepository.java
+/Users/mihnea.voronca/Desktop/IP2/ip_project/RecommendationTeam/src/main/java/com/ipproject/recommendation/repository/UserRepository.java
+/Users/mihnea.voronca/Desktop/IP2/ip_project/RecommendationTeam/src/main/java/com/ipproject/recommendation/controllers/AddressController.java

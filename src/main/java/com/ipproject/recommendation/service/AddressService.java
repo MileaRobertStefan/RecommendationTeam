@@ -27,12 +27,12 @@ public class AddressService {
     }
 
 
-    public Address createOrUpdate(Address address){
-        address.setCity("Tecuci");
-        address.setCountry("Romanica");
+    public Address createOrUpdate(Address address, String city, String country, String streetName, Integer streetNumber){
+        address.setCity(city);
+        address.setCountry(country);
         address.setId(UUID.randomUUID());
-        address.setStreetName("da");
-        address.setStreetNumber(1);
+        address.setStreetName(streetName);
+        address.setStreetNumber(streetNumber);
 
         address = repository.save(address);
         return address;

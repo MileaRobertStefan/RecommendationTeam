@@ -25,14 +25,14 @@ public class UserService {
         }
     }
 
-    public User createOrUpdate(User user) {
+    public User createOrUpdate(User user, Integer age, String firstName, String lastName, Integer medicalHistoryId) {
         user.setId(UUID.randomUUID());
         user.setAddress(null);
-        user.setAge(18);
+        user.setAge(age);
         user.setFamily(null);
-        user.setFirstName("Popescu");
-        user.setLastName("Ionescu");
-        user.setMedicalHistoryId(1);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setMedicalHistoryId(medicalHistoryId);
 
 
         user = repository.save(user);

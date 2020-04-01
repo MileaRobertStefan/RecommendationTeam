@@ -12,15 +12,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/contacts")
+@RequestMapping("api/v1")
 public class ContactController {
 
     @Autowired
     private ContactService service;
 
-    @GetMapping
+    @RequestMapping(path = "/contacts", method = RequestMethod.GET)
     public ResponseEntity<List<Contact>> getContact() {
         List<Contact> contacts = service.getAllContacts();
         return new ResponseEntity<List<Contact>>(contacts, new HttpHeaders(), HttpStatus.OK);
+    }
+
+    @RequestMapping(path = "/contacts", method = RequestMethod.POST)
+    public ResponseEntity<Contact> createOrUpdateContact(@RequestBody Contact contact){
+        Contact newContact = service.createOrUpdate(contact, contact.getPhoneNumber(), contact.getEmail());
+
+        return new ResponseEntity<Contact>(newContact, new HttpHeaders(), HttpStatus.CREATED);
     }
 }

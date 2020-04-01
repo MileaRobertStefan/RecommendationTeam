@@ -14,22 +14,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/addresses")
+@RequestMapping("api/v1")
 public class AddressController {
 
     @Autowired
     private AddressService service;
 
-    @GetMapping
+    @RequestMapping(path = "/addresses", method = RequestMethod.GET)
     public ResponseEntity<List<Address>> getUsers() {
         List<Address> addresses = service.getAllAddresses();
         return new ResponseEntity<List<Address>>(addresses, new HttpHeaders(), HttpStatus.OK);
     }
 
-    @PostMapping
+    @RequestMapping(path = "/addresses", method = RequestMethod.POST)
     public ResponseEntity<Address> createOrUpdateUser(@RequestBody Address address) {
-        Address address1 = service.createOrUpdate(address);
+        Address newAddress = service.createOrUpdate(address, address.getCity(),address.getCountry(), address.getStreetName(), address.getStreetNumber());
 
-        return new ResponseEntity<Address>(address1, new HttpHeaders(), HttpStatus.CREATED);
+        return new ResponseEntity<Address>(newAddress, new HttpHeaders(), HttpStatus.CREATED);
     }
 }
