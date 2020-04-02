@@ -2,6 +2,7 @@ package com.ipproject.recommendation.controllers;
 
 import com.ipproject.recommendation.models.Address;
 import com.ipproject.recommendation.models.Contact;
+import com.ipproject.recommendation.models.User;
 import com.ipproject.recommendation.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("api/v1")
@@ -24,8 +26,14 @@ public class ContactController {
         return new ResponseEntity<List<Contact>>(contacts, new HttpHeaders(), HttpStatus.OK);
     }
 
+    @RequestMapping(path = "/contact/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Contact> getContact(@PathVariable UUID id) {
+        Contact contact = service.getOneContact(id);
+        return new ResponseEntity<>(contact, new HttpHeaders(), HttpStatus.OK);
+    }
+
     @RequestMapping(path = "/contacts", method = RequestMethod.POST)
-    public ResponseEntity<Contact> createOrUpdateContact(@RequestBody Contact contact){
+    public ResponseEntity<Contact> createOrUpdateContact(@RequestBody Contact contact) {
         Contact newContact = service.createOrUpdate(contact, contact.getPhoneNumber(), contact.getEmail());
 
         return new ResponseEntity<Contact>(newContact, new HttpHeaders(), HttpStatus.CREATED);

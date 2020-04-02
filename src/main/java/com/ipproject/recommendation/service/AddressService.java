@@ -1,6 +1,7 @@
 package com.ipproject.recommendation.service;
 
 import com.ipproject.recommendation.models.Address;
+import com.ipproject.recommendation.models.Contact;
 import com.ipproject.recommendation.models.User;
 import com.ipproject.recommendation.repository.AddressRepository;
 import com.ipproject.recommendation.repository.UserRepository;
@@ -26,8 +27,11 @@ public class AddressService {
         }
     }
 
+    public Address getOneAddress(UUID id) {
+        return repository.findAddressById(id);
+    }
 
-    public Address createOrUpdate(Address address, String city, String country, String streetName, Integer streetNumber){
+    public Address createOrUpdate(Address address, String city, String country, String streetName, Integer streetNumber) {
         address.setCity(city);
         address.setCountry(country);
         address.setId(UUID.randomUUID());

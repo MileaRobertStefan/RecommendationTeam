@@ -25,6 +25,14 @@ public class UserService {
         }
     }
 
+    public User getOneUser(String firstName, String lastName) {
+        return repository.findUserByFirstNameAndLastName(firstName, lastName);
+    }
+
+    public User getUserById(UUID id) {
+        return repository.findUserById(id);
+    }
+
     public User createOrUpdate(User user, Integer age, String firstName, String lastName, Integer medicalHistoryId) {
         user.setId(UUID.randomUUID());
         user.setAddress(null);

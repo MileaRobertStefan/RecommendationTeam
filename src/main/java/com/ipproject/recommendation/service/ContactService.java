@@ -1,6 +1,7 @@
 package com.ipproject.recommendation.service;
 
 import com.ipproject.recommendation.models.Contact;
+import com.ipproject.recommendation.models.User;
 import com.ipproject.recommendation.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,10 @@ public class ContactService {
         } else {
             return new ArrayList<>();
         }
+    }
+
+    public Contact getOneContact(UUID id) {
+        return repository.findContactById(id);
     }
 
     public Contact createOrUpdate(Contact contact, String phoneNumber, String email) {
