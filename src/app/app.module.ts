@@ -13,11 +13,13 @@ import {AutocompleteFilterExample} from './simptomsForm/auto-complete-example'
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import {SelectOverviewExample} from './addition'
 // import {MdSelectModule} from '@angular/material/select';
+import {InputComponent} from './inputComponent/inputComponent';
 
 
 
 @NgModule({
   declarations: [
+    InputComponent,
     AppComponent,
     AutocompleteFilterExample,
     SelectOverviewExample
@@ -35,9 +37,9 @@ import {SelectOverviewExample} from './addition'
     MatSelectModule,
     DemoMaterialModule
   ],
-  entryComponents:[AutocompleteFilterExample, SelectOverviewExample],
+  entryComponents:[AutocompleteFilterExample, SelectOverviewExample,InputComponent],
   providers: [ { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'legacy' } }],
-  bootstrap: [AppComponent, AutocompleteFilterExample, SelectOverviewExample],
+  bootstrap: [AppComponent, AutocompleteFilterExample, SelectOverviewExample,InputComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
