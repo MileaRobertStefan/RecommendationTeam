@@ -2,9 +2,7 @@ package com.ipproject.recommendation.controllers;
 
 
 import com.ipproject.recommendation.models.Address;
-import com.ipproject.recommendation.models.User;
 import com.ipproject.recommendation.service.AddressService;
-import com.ipproject.recommendation.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -22,19 +20,19 @@ public class AddressController {
     private AddressService service;
 
     @RequestMapping(path = "/addresses", method = RequestMethod.GET)
-    public ResponseEntity<List<Address>> getUsers() {
+    public ResponseEntity<List<Address>> getAdresses() {
         List<Address> addresses = service.getAllAddresses();
         return new ResponseEntity<List<Address>>(addresses, new HttpHeaders(), HttpStatus.OK);
     }
 
     @RequestMapping(path = "/address/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Address> getUserById(@PathVariable UUID id) {
+    public ResponseEntity<Address> getAddressById(@PathVariable UUID id) {
         Address address = service.getOneAddress(id);
         return new ResponseEntity<>(address, new HttpHeaders(), HttpStatus.OK);
     }
 
     @RequestMapping(path = "/addresses", method = RequestMethod.POST)
-    public ResponseEntity<Address> createOrUpdateUser(@RequestBody Address address) {
+    public ResponseEntity<Address> createOrUpdateAddress(@RequestBody Address address) {
         Address newAddress = service.createOrUpdate(address, address.getCity(), address.getCountry(), address.getStreetName(), address.getStreetNumber());
 
         return new ResponseEntity<Address>(newAddress, new HttpHeaders(), HttpStatus.CREATED);

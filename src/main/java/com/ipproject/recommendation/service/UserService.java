@@ -1,6 +1,9 @@
 package com.ipproject.recommendation.service;
 
+import com.ipproject.recommendation.models.Address;
+import com.ipproject.recommendation.models.Contact;
 import com.ipproject.recommendation.models.User;
+import com.ipproject.recommendation.models.Workplace;
 import com.ipproject.recommendation.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,15 +36,15 @@ public class UserService {
         return repository.findUserById(id);
     }
 
-    public User createOrUpdate(User user, Integer age, String firstName, String lastName, Integer medicalHistoryId) {
+    public User createOrUpdate(User user, Integer age, String firstName, String lastName, Integer medicalHistoryId, Contact contact, Address address, List<Integer>family) {
         user.setId(UUID.randomUUID());
-        user.setAddress(null);
+        user.setAddress(address);
         user.setAge(age);
-        user.setFamily(null);
+        user.setFamily(family);
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setMedicalHistoryId(medicalHistoryId);
-
+        user.setContact(contact);
 
         user = repository.save(user);
         return user;

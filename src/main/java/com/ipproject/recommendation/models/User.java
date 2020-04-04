@@ -1,14 +1,27 @@
 package com.ipproject.recommendation.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+    private String firstName;
+    private String lastName;
+    private Integer age;
+    @OneToOne
+    private Address address;
+    @ElementCollection
+    private List<Integer> family;
+    private Integer medicalHistoryId;
+    @OneToOne
+    private Contact contact;
+
+
     public UUID getId() {
         return id;
     }
@@ -41,11 +54,11 @@ public class User {
         this.age = age;
     }
 
-    public Integer[] getFamily() {
+    public List<Integer> getFamily() {
         return family;
     }
 
-    public void setFamily(Integer[] family) {
+    public void setFamily(List<Integer> family) {
         this.family = family;
     }
 
@@ -57,29 +70,27 @@ public class User {
         this.medicalHistoryId = medicalHistoryId;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
-    private String firstName;
-    private String lastName;
-    private Integer age;
-    private Integer address;
-    private Integer[] family;
-    private Integer medicalHistoryId;
-    private Integer contact;
+    public Address getAddress() {
+        return address;
+    }
 
-
-    public void setAddress(Integer address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
-    public Integer getContact() {
+    public Contact getContact() {
         return contact;
     }
 
-    public void setContact(Integer contact) {
+    public void setContact(Contact contact) {
         this.contact = contact;
     }
 }
+
+
+
+
+
+
 
 

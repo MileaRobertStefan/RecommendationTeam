@@ -38,7 +38,7 @@ public class UsersController {
 
     @RequestMapping(path = "/users", method = RequestMethod.POST)
     public ResponseEntity<User> createOrUpdateUser(@RequestBody User user) {
-        User newUser = service.createOrUpdate(user, user.getAge(), user.getFirstName(), user.getLastName(), user.getMedicalHistoryId());
+        User newUser = service.createOrUpdate(user, user.getAge(), user.getFirstName(), user.getLastName(), user.getMedicalHistoryId(), user.getContact(), user.getAddress(), user.getFamily());
 
         return new ResponseEntity<User>(newUser, new HttpHeaders(), HttpStatus.CREATED);
     }
