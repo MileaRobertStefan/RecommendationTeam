@@ -16,10 +16,10 @@ mat-tab-group
     position:absolute;
     left:30%;
 }
-<<<<<<< HEAD
 */
 body{
   background-color:#3f51b5;
+  padding-top:100px;
   }
   mat-card
   {
@@ -30,6 +30,17 @@ body{
     margin-left: 300px;
     margin-right:300px;
   }
-  
-=======
->>>>>>> Front
+  .inf
+  {
+    padding-top:50px;
+    
+    
+  }
+  .inf2
+  {padding-bottom:50px;
+
+  }
+  p
+  {
+    text-align:center;
+  }
