@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl} from '@angular/forms';
+import {FormControl, Validators} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 
@@ -18,7 +18,9 @@ interface Choice {
 })
 export class AutocompleteFilterExample implements OnInit {
   myControl = new FormControl();
-  mySecondControl = new FormControl();
+  mySecondControl = new FormControl('',Validators.required);
+  myThirdControl = new FormControl('',Validators.required);
+  myFourthControl = new FormControl('',Validators.required);
   chosenZone: string;
   options: string[] = ['Cap', 'Stomac', 'Membre'];
   zoneOptions : Object ={Cap:['Migrenă','Amețeală'], Stomac: ['Arsuri', 'Greață'], Membre:['Durere os']};

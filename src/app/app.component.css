@@ -19,7 +19,15 @@ mat-tab-group
 */
 body{
   background-color:#3f51b5;
+<<<<<<< HEAD
   padding-top:100px;
+=======
+<<<<<<< HEAD
+  padding-top: 300px;;
+=======
+  padding-top:100px;
+>>>>>>> dc6c9ed39f9816cc758e23e4c936c04d4fd2ee05
+>>>>>>> Front
   }
   mat-card
   {
@@ -30,6 +38,12 @@ body{
     margin-left: 300px;
     margin-right:300px;
   }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+  
+=======
+>>>>>>> Front
   .inf
   {
     padding-top:50px;
@@ -44,3 +58,7 @@ body{
   {
     text-align:center;
   }
+<<<<<<< HEAD
+=======
+>>>>>>> dc6c9ed39f9816cc758e23e4c936c04d4fd2ee05
+>>>>>>> Front
