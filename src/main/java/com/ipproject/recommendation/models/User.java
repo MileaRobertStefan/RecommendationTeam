@@ -1,32 +1,33 @@
 package com.ipproject.recommendation.models;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 @Entity
+@Document(collection = "Users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private int id;
     private String firstName;
     private String lastName;
     private Integer age;
     @OneToOne
     private Address address;
-    @ElementCollection
-    private List<Integer> family;
     private Integer medicalHistoryId;
     @OneToOne
     private Contact contact;
+    //adauga familie
 
-
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -52,14 +53,6 @@ public class User {
 
     public void setAge(Integer age) {
         this.age = age;
-    }
-
-    public List<Integer> getFamily() {
-        return family;
-    }
-
-    public void setFamily(List<Integer> family) {
-        this.family = family;
     }
 
     public Integer getMedicalHistoryId() {

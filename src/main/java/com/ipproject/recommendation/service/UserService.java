@@ -32,15 +32,14 @@ public class UserService {
         return repository.findUserByFirstNameAndLastName(firstName, lastName);
     }
 
-    public User getUserById(UUID id) {
+    public User getUserById(int id) {
         return repository.findUserById(id);
     }
 
-    public User createOrUpdate(User user, Integer age, String firstName, String lastName, Integer medicalHistoryId, Contact contact, Address address, List<Integer>family) {
-        user.setId(UUID.randomUUID());
+    public User createOrUpdate(User user, Integer age, String firstName, String lastName, Integer medicalHistoryId, Contact contact, Address address) {
+        user.setId(1);
         user.setAddress(address);
         user.setAge(age);
-        user.setFamily(family);
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setMedicalHistoryId(medicalHistoryId);
