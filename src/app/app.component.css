@@ -19,7 +19,11 @@ mat-tab-group
 */
 body{
   background-color:#3f51b5;
+<<<<<<< HEAD
   padding-top: 300px;;
+=======
+  padding-top:100px;
+>>>>>>> dc6c9ed39f9816cc758e23e4c936c04d4fd2ee05
   }
   mat-card
   {
@@ -30,4 +34,21 @@ body{
     margin-left: 300px;
     margin-right:300px;
   }
+<<<<<<< HEAD
   
+=======
+  .inf
+  {
+    padding-top:50px;
+    
+    
+  }
+  .inf2
+  {padding-bottom:50px;
+
+  }
+  p
+  {
+    text-align:center;
+  }
+>>>>>>> dc6c9ed39f9816cc758e23e4c936c04d4fd2ee05
