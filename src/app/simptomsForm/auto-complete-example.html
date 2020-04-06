@@ -1,4 +1,5 @@
 <form class="example-form">
+  <ng-template matStepLabel>Simptome</ng-template>
     <mat-form-field class="example-full-width">
       <input type="text"
              placeholder="Alege zona corpului"
@@ -6,12 +7,14 @@
              matInput
              [formControl]="myControl"
              [matAutocomplete]="auto"
+             required
              >
       <mat-autocomplete #auto="matAutocomplete">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
           {{option}}
         </mat-option>
       </mat-autocomplete>
+      <mat-error *ngIf="myControl.hasError('required')">Trebuie să alegeți o opțiune</mat-error>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
@@ -21,27 +24,31 @@
                matInput
                [formControl]="mySecondControl"
                [matAutocomplete]="auto2"
+               required
                >
         <mat-autocomplete #auto2="matAutocomplete">
           <mat-option *ngFor="let option of filteredSecondOptions | async" [value]="option">
             {{option}}
           </mat-option>
         </mat-autocomplete>
+        <mat-error *ngIf="mySecondControl.hasError('required')">Trebuie să alegeți o opțiune</mat-error>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Suferiți de vreo afecțiune cronică inregistrată?</mat-label>
-        <mat-select>
+        <mat-select [formControl]="myThirdControl">
             <mat-option *ngFor="let choice of choices" [value]="choice.value">
             {{choice.viewValue}}
             </mat-option>
         </mat-select>
+        <mat-error *ngIf="myThirdControl.hasError('required')">Trebuie să alegeți o opțiune</mat-error>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
       <mat-label>Data ultimului control medical (măcar aproximativ)</mat-label>
-      <input matInput [matDatepicker]="picker">
+      <input matInput [formControl]="myFourthControl" [matDatepicker]="picker">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="myFourthControl.hasError('required')">Trebuie să alegeți o opțiune</mat-error>
     </mat-form-field>
   </form>
