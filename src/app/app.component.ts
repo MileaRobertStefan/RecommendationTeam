@@ -9,7 +9,11 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 
 export class AppComponent {
+<<<<<<< HEAD
   isLinear =false;
+=======
+  isLinear =true;
+>>>>>>> Front
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup:FormGroup;
