@@ -31,12 +31,12 @@ public class DoctorsService {
         return repository.findDoctorByFirstNameAndLastName(firstName, lastName);
     }
 
-    public Doctor getDoctorById(UUID id) {
+    public Doctor getDoctorById(int id) {
         return repository.findDoctorById(id);
     }
 
     public Doctor createOrUpdate(Doctor doctor, Integer age, String firstName, String lastName, List<String>speciality, double rating, Contact contact, List<Workplace>workplaces, List<String> disponibility) {
-        doctor.setId(UUID.randomUUID());
+        doctor.setId(1);
         doctor.setWorkplaces(workplaces);
         doctor.setAge(age);
         doctor.setContact(contact);

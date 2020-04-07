@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Document(collection = "Users")
+@Document(collection = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

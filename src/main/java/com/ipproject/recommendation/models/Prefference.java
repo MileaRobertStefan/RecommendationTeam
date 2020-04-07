@@ -1,5 +1,7 @@
 package com.ipproject.recommendation.models;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,19 +9,20 @@ import javax.persistence.Id;
 import java.util.UUID;
 
 @Entity
+@Document(collection = "prefferences")
 public class Prefference {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private int id;
     private String doctorGender;
     private Integer amountOfMoney;
     private String HospitalType;
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

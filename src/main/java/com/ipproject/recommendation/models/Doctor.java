@@ -1,14 +1,17 @@
 package com.ipproject.recommendation.models;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.UUID;
 
 @Entity
+@Document(collection = "doctors")
 public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private int id;
     private String firstName;
     private String lastName;
     private Integer age;
@@ -23,11 +26,11 @@ public class Doctor {
     private List<String>disponibility;
 
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 

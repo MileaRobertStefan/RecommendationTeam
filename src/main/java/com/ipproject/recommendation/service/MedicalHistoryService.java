@@ -24,12 +24,12 @@ public class MedicalHistoryService {
         }
     }
 
-    public MedicalHistory getMedicalHistoryById(UUID id) {
+    public MedicalHistory getMedicalHistoryById(Integer id) {
         return repository.findMedicalHistoryById(id);
     }
 
     public MedicalHistory createOrUpdate(MedicalHistory medicalHistory, List<Integer> illnesses, List<String>observations) {
-        medicalHistory.setId(UUID.randomUUID());
+        medicalHistory.setId(1);
         medicalHistory.setIllnesses(illnesses);
         medicalHistory.setObservations(observations);
         medicalHistory = repository.save(medicalHistory);
