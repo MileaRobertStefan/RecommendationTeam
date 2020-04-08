@@ -1,33 +1,9 @@
-/*
-.example-form {
-  min-width: 450px;
-  max-width: 700px;
-  width: 100%;
- margin-top: 20px;
-}
-
-.example-full-width {
-  width: 100%;
-  height:75px;
-}
-
-mat-tab-group
-{
-    position:absolute;
-    left:30%;
-}
-*/
 body{
   background-color:#3f51b5;
-<<<<<<< HEAD
   padding-top:100px;
-=======
-<<<<<<< HEAD
-  padding-top: 300px;;
-=======
+
   padding-top:100px;
->>>>>>> dc6c9ed39f9816cc758e23e4c936c04d4fd2ee05
->>>>>>> Front
+
   }
   mat-card
   {
@@ -37,13 +13,15 @@ body{
     margin-top: auto;
     margin-left: 300px;
     margin-right:300px;
+    flex:1;
   }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+
+  mat-horizontal-stepper {
+    flex:1;
+
+  }
   
-=======
->>>>>>> Front
+
   .inf
   {
     padding-top:50px;
@@ -58,7 +36,4 @@ body{
   {
     text-align:center;
   }
-<<<<<<< HEAD
-=======
->>>>>>> dc6c9ed39f9816cc758e23e4c936c04d4fd2ee05
->>>>>>> Front
+
