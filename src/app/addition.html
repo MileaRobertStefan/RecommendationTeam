@@ -3,7 +3,7 @@
         <mat-label>Continuați cu locația curentă?</mat-label>
         <mat-select [formControl]="choicesControl" required>
             <mat-option>--</mat-option>
-            <mat-option *ngFor="let choice of choices" [value]="choice.value">
+            <mat-option *ngFor="let choice of choicesThirdStep" [value]="choice.value">
             {{choice.viewValue}}
             </mat-option>
         </mat-select>
