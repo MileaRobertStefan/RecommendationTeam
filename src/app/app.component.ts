@@ -26,6 +26,12 @@ export class AppComponent implements OnInit {
   zoneOptions : Object ={Cap:['Migrenă','Amețeală'], Stomac: ['Arsuri', 'Greață'], Membre:['Durere os']};
   filteredOptions: Observable<string[]>
   filteredSecondOptions : Observable<string[]>;
+
+  json = {  "simptome" : [{"zonaCorp":"text"},{"tipSimptom":"text2"},{"bolnav":"text2"},{"ultimaDataControl":"text"}] , 
+     "informatii" : [{"aceeasiAdresa":"text"},{"adresaActuala":"text"},{"genMedic":"text"},{"tipClinica":"text"},{"limitaPret":"text"}]
+    
+}
+
   choices: Choice[] = [
     {value: 'da-0', viewValue: 'Da'},
     {value: 'nu-1', viewValue: 'Nu'}
@@ -87,15 +93,23 @@ export class AppComponent implements OnInit {
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-    console.log(typeof this.firstFormGroup.controls.bodyPartControl.value)
-    
+    //console.log( this.firstFormGroup.controls.bodyPartControl.value)
+
+    this.json.simptome[0].zonaCorp=this.firstFormGroup.controls.bodyPartControl.value;
+   // console.log( this.json.simptome[0].zonaCorp)
+
     const chosenZone = this.firstFormGroup.controls.bodyPartControl.value;
     this.chosenZoneOptions=this.zoneOptions[chosenZone];
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
   private _filter2(value: string):string[] {
       const filterValue=value.toLowerCase();
-      console.log(filterValue)
+     
+     // console.log(filterValue)
+
+     this.json.simptome[0].tipSimptom=filterValue
+     //console.log(this.json.simptome[0].tipSimptom)
+     
       if(this.chosenZoneOptions!==undefined){
         return this.chosenZoneOptions.filter(option=>option.toLowerCase().includes(filterValue))
       }
@@ -103,7 +117,28 @@ export class AppComponent implements OnInit {
         return []
       }
   }
+  
+  getValueFromSelect()
+{
+    
+    this.json.simptome[0].bolnav = this.firstFormGroup.controls.chronicDeseaseControl.value;
+    //console.log( this.json.simptome[0].bolnav);
+  }
+  getDate()
+  {
+    this.json.simptome[0].ultimaDataControl = this.firstFormGroup.controls.lastDateControl.value;
+    //console.log( this.json.simptome[0].ultimaDataControl);
 
+  }
+  viewJson()
+  { //console.log("apelez functia")
+    console.log( this.json.simptome[0].zonaCorp)
+    console.log(this.json.simptome[0].tipSimptom)
+    console.log( this.json.simptome[0].bolnav);
+    console.log( this.json.simptome[0].ultimaDataControl);
+
+  }
+  
   formatLabel(value: number) {
     if (value >= 10) {
       return Math.round(value / 10);

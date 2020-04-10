@@ -11,7 +11,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import {DemoMaterialModule} from './material-module'
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 // import {MdSelectModule} from '@angular/material/select';
+import {enableProdMode} from '@angular/core';
 
+enableProdMode();
 
 
 

@@ -21,8 +21,8 @@
               {{option}}
             </mat-option>
           </mat-autocomplete>
-          <mat-error *ngIf="this.firstFormGroup.controls.bodyPartControl.hasError('required')">Trebuie să alegeți o opțiune</mat-error>
-        </mat-form-field>
+        <mat-error *ngIf="this.firstFormGroup.controls.bodyPartControl.hasError('required')">Trebuie să alegeți o opțiune</mat-error>
+      </mat-form-field>
     
         <mat-form-field class="example-full-width">
             <input type="text"
@@ -44,8 +44,9 @@
           <mat-form-field class="example-full-width">
             <mat-label>Suferiți de vreo afecțiune cronică inregistrată?</mat-label>
             <mat-select [formControl]="this.firstFormGroup.controls.chronicDeseaseControl">
-                <mat-option *ngFor="let choice of choices" [value]="choice.value">
+                <mat-option *ngFor="let choice of choices" [value]="choice.value" >
                 {{choice.viewValue}}
+                {{ getValueFromSelect() }}
                 </mat-option>
             </mat-select>
             <mat-error *ngIf="this.firstFormGroup.controls.chronicDeseaseControl.hasError('required')">Trebuie să alegeți o opțiune</mat-error>
@@ -55,12 +56,12 @@
           <mat-label>Data ultimului control medical (măcar aproximativ)</mat-label>
           <input matInput [formControl]="this.firstFormGroup.controls.lastDateControl" [matDatepicker]="picker">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
+          <mat-datepicker #picker> {{getDate()}}</mat-datepicker>
           <mat-error *ngIf="this.firstFormGroup.controls.lastDateControl.hasError('required')">Trebuie să alegeți o opțiune</mat-error>
         </mat-form-field>
       </form>      
      <div>
-      <button mat-button matStepperNext>Următorul</button>
+      <button mat-button matStepperNext>Următorul {{viewJson()}}</button>
     </div>
   </mat-step>
 
