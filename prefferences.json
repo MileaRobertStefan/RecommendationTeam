@@ -1,0 +1,10 @@
+{"doctorGender":"male","amountOfMoney":{"$numberInt":"500"},"hospitalType":"public"}
+{"doctorGender":"female","amountOfMoney":{"$numberInt":"2000"},"hospitalType":"private"}
+{"doctorGender":"female","amountOfMoney":{"$numberInt":"800"},"hospitalType":"private"}
+{"doctorGender":"male","amountOfMoney":{"$numberInt":"1200"},"hospitalType":"public"}
+{"doctorGender":"female","amountOfMoney":{"$numberInt":"600"},"hospitalType":"public"}
+{"doctorGender":"female","amountOfMoney":{"$numberInt":"1000"},"hospitalType":"private"}
+{"doctorGender":"female","amountOfMoney":{"$numberInt":"4000"},"hospitalType":"private"}
+{"doctorGender":"male","amountOfMoney":{"$numberInt":"680"},"hospitalType":"public"}
+{"doctorGender":"male","amountOfMoney":{"$numberInt":"1300"},"hospitalType":"public"}
+{"doctorGender":"female","amountOfMoney":{"$numberInt":"1300"},"hospitalType":"public"}

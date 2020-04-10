@@ -1,0 +1,10 @@
+{"illnesses":[{"$numberInt":"1"},{"$numberInt":"3"},{"$numberInt":"4"}],"observations":["alergic to bees"]}
+{"illnesses":[{"$numberInt":"1"},{"$numberInt":"2"},{"$numberInt":"10"},{"$numberInt":"15"}],"observations":["suffering of asthma"]}
+{"illnesses":[{"$numberInt":"1"},{"$numberInt":"7"}],"observations":["allergic to certain drugs"]}
+{"illnesses":[{"$numberInt":"2"},{"$numberInt":"3"},{"$numberInt":"4"},{"$numberInt":"7"}]}
+{"illnesses":[{"$numberInt":"1"}],"observations":["suffers of skin allergies","suffering of asthma"]}
+{"illnesses":[{"$numberInt":"2"},{"$numberInt":"5"},{"$numberInt":"6"},{"$numberInt":"10"}]}
+{"illnesses":[{"$numberInt":"5"},{"$numberInt":"3"},{"$numberInt":"8"},{"$numberInt":"9"}],"observations":["suffering of lactose intolerance","allergic to pollen"]}
+{"illnesses":[{"$numberInt":"5"},{"$numberInt":"9"}],"observations":["suffering of gluten intolerance"]}
+{"illnesses":[{"$numberInt":"3"}],"observations":["suffering of gluten intolerance"]}
+{"illnesses":[{"$numberInt":"3"},{"$numberInt":"4"},{"$numberInt":"7"},{"$numberInt":"8"},{"$numberInt":"10"}]}
