@@ -130,7 +130,7 @@
   
       <mat-form-field class="exampchoicesControlle-full-width form-field">
         <mat-label>Introduceți noua adresă (dacă este cazul)</mat-label>
-          <input matInput [formControl]="this.thirdFormGroup.controls.locationControl">
+          <input matInput required>
           <mat-error *ngIf="this.thirdFormGroup.controls.locationControl.hasError('required')">
                 Noua adresă trebuie să fie introdusă
           </mat-error>
@@ -159,14 +159,15 @@
       <h4>Selectați prețul maxim pe care doriți să îl alocați tuturor procedurilor medicale (în LEI):</h4>
       
       <mat-slider
+          id="slider"
           thumbLabel
-          [displayWith]="formatLabel"
           tickInterval="10"
           min="100"
-          max="10000">
+          max="10000"
+          (change)="updateValue($event)"
+          [value]="sliderValue"
+          [tooltip]="bigTool">
         </mat-slider>
-     
-         
   </form>
     <div>
       <button mat-button matStepperPrevious>Înapoi</button>

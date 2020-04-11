@@ -1,18 +1,15 @@
 
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {FormBuilder, FormGroup, Validators, FormControl, ValidationErrors} from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { AbstractControl } from '@angular/forms'
 import { MatSlider } from '@angular/material/slider';
+import { MAR } from '@angular/material/core';
 
 interface Choice {
   value: string;
   viewValue: string;
-}
-
-interface ValidatorFn {
-  (c: AbstractControl) : ValidationErrors | null
 }
 
 @Component({
@@ -26,6 +23,7 @@ export class AppComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup:FormGroup;
+  sliderValue: number;
   chosenZoneOptions: string[];
   options: string[] = ['Cap', 'Stomac', 'Membre'];
   zoneOptions : Object ={Cap:['Migrenă','Amețeală'], Stomac: ['Arsuri', 'Greață'], Membre:['Durere os']};
@@ -36,6 +34,7 @@ export class AppComponent implements OnInit {
      "informatii" : [{"aceeasiAdresa":"text"},{"adresaActuala":"text"},{"genMedic":"text"},{"tipClinica":"text"},{"limitaPret":"text"}]
     
 }
+
 
   choices: Choice[] = [
     {value: 'da-0', viewValue: 'Da'},
@@ -133,21 +132,25 @@ export class AppComponent implements OnInit {
     //console.log( this.json.simptome[0].ultimaDataControl);
   }
 
-  getIfCurrentAddress() {
+  formatLabel(sliderValue: number) {
+    if (sliderValue >= 10) {
+      return Math.round(sliderValue / 10);
+    }
+    return sliderValue;
+  }
+
+  public bigTool: Object = { isVisible: true, format: '#####' };
+  // public bigTool2: Object = { placement: 'After', format: '##,###', largeStep: 20, smallStep: 10, showSmallTicks: true };
+
+  updateValue(event) {
+    this.sliderValue = event.value;
+  }
+
+  getCurrentInfo() {
     this.json.informatii[1].aceeasiAdresa = this.thirdFormGroup.controls.locationControl.value;
-  }
-
-  getDoctorGender() {
     this.json.informatii[1].genMedic = this.thirdFormGroup.controls.newLocationControl.value;
-  }
-
-  getClinicType() {
     this.json.informatii[1].tipClinica = this.thirdFormGroup.controls.medicControl.value;
-  }
-
-  onInputChange(event: MatSlider) {
-    console.log("This is emitted as the thumb slides");
-    console.log(event.value);
+    this.json.informatii[1].limitaPret = JSON.stringify(this.sliderValue);    
   }
 
   viewJson()
@@ -156,22 +159,13 @@ export class AppComponent implements OnInit {
     console.log(this.json.simptome[0].tipSimptom)
     console.log( this.json.simptome[0].bolnav);
     console.log( this.json.simptome[0].ultimaDataControl);
-    this.getClinicType()
-    this.getIfCurrentAddress()
-    this.getDoctorGender()
+    this.getCurrentInfo();
     console.log( this.json.informatii[1].aceeasiAdresa)
     console.log(this.json.informatii[1].genMedic) 
     console.log(this.json.informatii[1].tipClinica) 
+    console.log(this.json.informatii[1].limitaPret);
   }
   
-  formatLabel(value: number) {
-    if (value >= 10) {
-      return Math.round(value / 10);
-    }
-
-    return value;
-  }
-
 }
 
 
