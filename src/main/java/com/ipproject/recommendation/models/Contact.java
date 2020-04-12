@@ -1,16 +1,22 @@
 package com.ipproject.recommendation.models;
 
-import javax.persistence.*;
-import java.util.UUID;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
+import javax.persistence.Embeddable;
+
+@Embeddable
+@Document(collection = "users")
 public class Contact {
-    public String getPhoneNumber() {
-        return phoneNumber;
+
+    private String phone;
+    private String email;
+
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhone(String phoneNumber) {
+        this.phone = phoneNumber;
     }
 
     public String getEmail() {
@@ -21,17 +27,4 @@ public class Contact {
         this.email = email;
     }
 
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private UUID id;
-    private String phoneNumber;
-    private String email;
 }

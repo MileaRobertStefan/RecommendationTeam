@@ -32,7 +32,7 @@ public class DoctorsController {
     }
 
     @RequestMapping(path = "/doctors/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Doctor> getDoctorById(@PathVariable int id) {
+    public ResponseEntity<Doctor> getDoctorById(@PathVariable String id) {
         Doctor doctor = service.getDoctorById(id);
         return new ResponseEntity<>(doctor, new HttpHeaders(), HttpStatus.OK);
     }

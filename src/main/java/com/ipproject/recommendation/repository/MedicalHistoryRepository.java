@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface MedicalHistoryRepository extends MongoRepository<MedicalHistory, Integer> {
-    MedicalHistory findMedicalHistoryById(Integer id);
+public interface MedicalHistoryRepository extends MongoRepository<MedicalHistory, String> {
+    MedicalHistory findMedicalHistoryById(String id);
 }

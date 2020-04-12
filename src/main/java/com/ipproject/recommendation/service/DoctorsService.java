@@ -7,7 +7,6 @@ import com.ipproject.recommendation.repository.DoctorsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -31,15 +30,15 @@ public class DoctorsService {
         return repository.findDoctorByFirstNameAndLastName(firstName, lastName);
     }
 
-    public Doctor getDoctorById(int id) {
+    public Doctor getDoctorById(String id) {
         return repository.findDoctorById(id);
     }
 
     public Doctor createOrUpdate(Doctor doctor, Integer age, String firstName, String lastName, List<String>speciality, double rating, Contact contact, List<Workplace>workplaces, List<String> disponibility) {
-        doctor.setId(1);
-        doctor.setWorkplaces(workplaces);
+        doctor.setId(UUID.randomUUID().toString());
+       // doctor.setWorkplaces(workplaces);
         doctor.setAge(age);
-        doctor.setContact(contact);
+        //doctor.setContact(contact);
         doctor.setFirstName(firstName);
         doctor.setLastName(lastName);
         doctor.setDisponibility(disponibility);

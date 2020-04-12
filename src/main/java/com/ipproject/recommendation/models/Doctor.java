@@ -4,33 +4,31 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Document(collection = "doctors")
 public class Doctor {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private String id;
     private String firstName;
     private String lastName;
     private Integer age;
     @ElementCollection
     private List<String> speciality;
+
     private Double rating;
-    @OneToOne
     private Contact contact;
-    @OneToMany
+    @ElementCollection
     private List<Workplace> workplaces;
     @ElementCollection
-    private List<String>disponibility;
+    private List<String> disponibility;
 
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

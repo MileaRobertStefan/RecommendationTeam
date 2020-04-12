@@ -25,12 +25,12 @@ public class IllnessesService {
         }
     }
 
-    public Illness getIllnessesById(int id) {
+    public Illness getIllnessesById(String id) {
         return repository.findIllnessById(id);
     }
 
     public Illness createOrUpdate(Illness illness, String name, String description, List<String> symptoms, List<String> complications, List<String> medication) {
-        illness.setId(1);
+        illness.setId(UUID.randomUUID().toString());
         illness.setName(name);
         illness.setDescription(description);
         illness.setComplications(complications);

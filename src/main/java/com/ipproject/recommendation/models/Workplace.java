@@ -1,26 +1,19 @@
 package com.ipproject.recommendation.models;
 
-import javax.persistence.*;
-import java.util.UUID;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
+import javax.persistence.Embeddable;
+
+@Embeddable
+@Document(collection = "users")
 public class Workplace {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+
     private String hospitalName;
     private String country;
     private String city;
     private String streetName;
-    private Integer streetNumber;
+    private Integer streetNo;
 
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
 
     public String getHospitalName() {
         return hospitalName;
@@ -54,11 +47,11 @@ public class Workplace {
         this.streetName = streetName;
     }
 
-    public Integer getStreetNumber() {
-        return streetNumber;
+    public Integer getStreetNo() {
+        return streetNo;
     }
 
-    public void setStreetNumber(Integer streetNumber) {
-        this.streetNumber = streetNumber;
+    public void setStreetNo(Integer streetNo) {
+        this.streetNo = streetNo;
     }
 }

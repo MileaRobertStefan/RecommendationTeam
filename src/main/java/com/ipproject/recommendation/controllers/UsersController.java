@@ -32,7 +32,7 @@ public class UsersController {
     }
 
     @RequestMapping(path = "/user/{id}", method = RequestMethod.GET)
-    public ResponseEntity<User> getUserById(@PathVariable Integer id) {
+    public ResponseEntity<User> getUserById(@PathVariable String id) {
         User user = service.getUserById(id);
         return new ResponseEntity<>(user, new HttpHeaders(), HttpStatus.OK);
     }

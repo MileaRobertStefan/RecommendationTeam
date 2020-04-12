@@ -10,9 +10,9 @@ import java.util.UUID;
 
 @Repository
 
-public interface UserRepository extends MongoRepository<User, Integer> {
+public interface UserRepository extends MongoRepository<User, String> {
 
     User findUserByFirstNameAndLastName(String firstName, String lastName);
 
-    User findUserById(Integer id);
+    User findUserById(String id);
 }

@@ -10,8 +10,8 @@ import javax.print.Doc;
 import java.util.UUID;
 
 @Repository
-public interface DoctorsRepository extends MongoRepository<Doctor, UUID> {
+public interface DoctorsRepository extends MongoRepository<Doctor, String> {
     Doctor findDoctorByFirstNameAndLastName(String firstName, String lastName);
 
-    Doctor findDoctorById(int id);
+    Doctor findDoctorById(String id);
 }

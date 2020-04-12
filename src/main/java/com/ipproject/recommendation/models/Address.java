@@ -1,11 +1,17 @@
 package com.ipproject.recommendation.models;
 
-import java.util.UUID;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
 
-@Entity
+@Embeddable
+@Document(collection = "users")
 public class Address {
+
+    private String country;
+    private String city;
+    private String streetName;
+    private int streetNo;
 
 
     public String getCountry() {
@@ -32,26 +38,13 @@ public class Address {
         this.city = city;
     }
 
-    public Integer getStreetNumber() {
-        return streetNumber;
+    public int getStreetNo() {
+        return streetNo;
     }
 
-    public void setStreetNumber(Integer streetNumber) {
-        this.streetNumber = streetNumber;
+    public void setStreetNo(int streetNo) {
+        this.streetNo = streetNo;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    public UUID getId() {return id;}
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    private UUID id;
-    private String country;
-    private String streetName;
-    private String city;
-    private Integer streetNumber;
 }

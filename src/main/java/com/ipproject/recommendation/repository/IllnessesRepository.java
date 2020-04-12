@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface IllnessesRepository extends MongoRepository<Illness, Integer> {
-    Illness findIllnessById(int id);
+public interface IllnessesRepository extends MongoRepository<Illness, String> {
+    Illness findIllnessById(String id);
 
 }

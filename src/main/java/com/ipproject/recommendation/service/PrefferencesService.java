@@ -25,12 +25,12 @@ public class PrefferencesService {
         }
     }
 
-    public Prefference getPrefferenceById(Integer id) {
+    public Prefference getPrefferenceById(String id) {
         return repository.findPrefferenceById(id);
     }
 
     public Prefference createOrUpdate(Prefference prefference, Integer amountOfMoney, String hospitalType, String doctorGender) {
-        prefference.setId(1);
+        prefference.setId(UUID.randomUUID().toString());
         prefference.setAmountOfMoney(amountOfMoney);
         prefference.setDoctorGender(doctorGender);
         prefference.setHospitalType(hospitalType);
