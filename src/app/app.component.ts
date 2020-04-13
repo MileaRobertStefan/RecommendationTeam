@@ -30,34 +30,46 @@ export class AppComponent implements OnInit {
   filteredOptions: Observable<string[]>
   filteredSecondOptions : Observable<string[]>;
 
-  json = {  "simptome" : [{"zonaCorp":"text"},{"tipSimptom":"text2"},{"bolnav":"text2"},{"ultimaDataControl":"text"}] , 
-     "informatii" : [{"aceeasiAdresa":"text"},{"adresaActuala":"text"},{"genMedic":"text"},{"tipClinica":"text"},{"limitaPret":"text"}]
-    
-}
+
+ jsonObject={
+    simptoms:{
+      bodyPart:'',
+      simptomType:'',
+      sick:false,
+      lastControlDate:''
+    },
+    info:{
+      sameAddress:true,
+      actualAdress:'',
+      medic:'',
+      clinic:'',
+      priceLimit:[0,0]
+    }
+ }
 
 
   choices: Choice[] = [
-    {value: 'da-0', viewValue: 'Da'},
-    {value: 'nu-1', viewValue: 'Nu'}
+    {value: 'da', viewValue: 'Da'},
+    {value: 'nu', viewValue: 'Nu'}
   ];
 
 
   choicesThirdStep: Choice[] = [
-    {value: 'da-0', viewValue: 'Da'},
-    {value: 'nu-1', viewValue: 'Nu'}
+    {value: 'da', viewValue: 'Da'},
+    {value: 'nu', viewValue: 'Nu'}
   ];
 
   
 
   anotherchoices: Choice[] = [
-    {value: 'barbat-0', viewValue: 'Bărbat'},
-    {value: 'femeie-1', viewValue: 'Femeie'}
+    {value: 'barbat', viewValue: 'Bărbat'},
+    {value: 'femeie', viewValue: 'Femeie'}
   ];
 
 
   thirdchoices: Choice[] = [
-    {value: 'privat-0', viewValue: 'Privat'},
-    {value: 'stat-1', viewValue: 'De stat'}
+    {value: 'privat', viewValue: 'Privat'},
+    {value: 'stat', viewValue: 'De stat'}
   ];
 
   constructor(private _formBuilder: FormBuilder) {}
@@ -76,6 +88,7 @@ export class AppComponent implements OnInit {
       locationControl: ['', Validators.required],
       newLocationControl: ['', Validators.required],
       medicControl: ['', Validators.required],
+      clinicControl:['',Validators.required]
     })
    
 
@@ -95,10 +108,6 @@ export class AppComponent implements OnInit {
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-    //console.log( this.firstFormGroup.controls.bodyPartControl.value)
-
-    this.json.simptome[0].zonaCorp=this.firstFormGroup.controls.bodyPartControl.value;
-   // console.log( this.json.simptome[0].zonaCorp)
 
     const chosenZone = this.firstFormGroup.controls.bodyPartControl.value;
     this.chosenZoneOptions=this.zoneOptions[chosenZone];
@@ -106,11 +115,6 @@ export class AppComponent implements OnInit {
   }
   private _filter2(value: string):string[] {
       const filterValue=value.toLowerCase();
-     
-     // console.log(filterValue)
-
-     this.json.simptome[0].tipSimptom=filterValue
-     //console.log(this.json.simptome[0].tipSimptom)
      
       if(this.chosenZoneOptions!==undefined){
         return this.chosenZoneOptions.filter(option=>option.toLowerCase().includes(filterValue))
@@ -120,17 +124,17 @@ export class AppComponent implements OnInit {
       }
   }
   
-  getValueFromSelect()
-{
-    
-    this.json.simptome[0].bolnav = this.firstFormGroup.controls.chronicDeseaseControl.value;
-    //console.log( this.json.simptome[0].bolnav);
+  getValuesStepOne()
+{  
+  
+    this.jsonObject.simptoms.bodyPart=this.firstFormGroup.controls.bodyPartControl.value;
+    this.jsonObject.simptoms.simptomType=this.firstFormGroup.controls.simptomTypeControl.value;
+    if(this.firstFormGroup.controls.chronicDeseaseControl.value==='da')
+    this.jsonObject.simptoms.sick = true;
+    this.jsonObject.simptoms.lastControlDate = this.firstFormGroup.controls.lastDateControl.value;
+  
   }
-  getDate()
-  {
-    this.json.simptome[0].ultimaDataControl = this.firstFormGroup.controls.lastDateControl.value;
-    //console.log( this.json.simptome[0].ultimaDataControl);
-  }
+
 
   formatLabel(sliderValue: number) {
     if (sliderValue >= 10) {
@@ -140,30 +144,24 @@ export class AppComponent implements OnInit {
   }
 
   public bigTool: Object = { isVisible: true, format: '#####' };
-  // public bigTool2: Object = { placement: 'After', format: '##,###', largeStep: 20, smallStep: 10, showSmallTicks: true };
 
   updateValue(event) {
     this.sliderValue = event.value;
   }
 
   getCurrentInfo() {
-    this.json.informatii[1].aceeasiAdresa = this.thirdFormGroup.controls.locationControl.value;
-    this.json.informatii[1].genMedic = this.thirdFormGroup.controls.newLocationControl.value;
-    this.json.informatii[1].tipClinica = this.thirdFormGroup.controls.medicControl.value;
-    this.json.informatii[1].limitaPret = JSON.stringify(this.sliderValue);    
+    if( this.thirdFormGroup.controls.locationControl.value==='nu')
+    this.jsonObject.info.sameAddress = false;
+    this.jsonObject.info.actualAdress=this.thirdFormGroup.controls.newLocationControl.value;
+    this.jsonObject.info.medic = this.thirdFormGroup.controls.medicControl.value;
+    this.jsonObject.info.clinic = this.thirdFormGroup.controls.clinicControl.value;
+    this.jsonObject.info.priceLimit = [0,this.sliderValue]  
   }
 
-  viewJson()
-  { //console.log("apelez functia")
-    console.log( this.json.simptome[0].zonaCorp)
-    console.log(this.json.simptome[0].tipSimptom)
-    console.log( this.json.simptome[0].bolnav);
-    console.log( this.json.simptome[0].ultimaDataControl);
-    this.getCurrentInfo();
-    console.log( this.json.informatii[1].aceeasiAdresa)
-    console.log(this.json.informatii[1].genMedic) 
-    console.log(this.json.informatii[1].tipClinica) 
-    console.log(this.json.informatii[1].limitaPret);
+
+  sendJson(){
+    const json=JSON.stringify(this.jsonObject);
+    console.log(json);
   }
   
 }
