@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-@Document(collection = "prefferences")
+@Document(collection = "Prefferences")
 public class Prefference {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

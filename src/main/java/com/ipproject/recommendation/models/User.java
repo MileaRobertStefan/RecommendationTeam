@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Document(collection = "users")
+@Document(collection = "Users")
 public class User {
 
     private String id;

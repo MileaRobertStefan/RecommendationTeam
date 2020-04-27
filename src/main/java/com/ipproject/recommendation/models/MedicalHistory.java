@@ -8,7 +8,7 @@ import java.util.List;
 
 
 @Entity
-@Document(collection = "medicalHistory")
+@Document(collection = "MedicalHistory")
 public class MedicalHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.persistence.Embeddable;
 
 @Embeddable
-@Document(collection = "users")
+@Document(collection = "Users")
 public class Contact {
 
     private String phone;

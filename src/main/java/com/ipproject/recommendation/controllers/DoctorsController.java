@@ -39,7 +39,7 @@ public class DoctorsController {
 
     @RequestMapping(path = "/doctors", method = RequestMethod.POST)
     public ResponseEntity<Doctor> createOrUpdateDoctor(@RequestBody Doctor doctor) {
-        Doctor newDoctor = service.createOrUpdate(doctor, doctor.getAge(), doctor.getFirstName(), doctor.getLastName(), doctor.getSpeciality(), doctor.getRating(), doctor.getContact(), doctor.getWorkplaces(),doctor.getDisponibility());
+        Doctor newDoctor = service.createOrUpdate(doctor, doctor.getAge(), doctor.getFirstName(), doctor.getLastName(), doctor.getSpeciality(), doctor.getRating(), doctor.getContact(), doctor.getWorkplaces(),doctor.getDisponibility(), doctor.getGender(), doctor.getAmountOfMoney());
 
         return new ResponseEntity<Doctor>(newDoctor, new HttpHeaders(), HttpStatus.CREATED);
     }

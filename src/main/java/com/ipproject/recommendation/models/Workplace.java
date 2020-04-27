@@ -5,10 +5,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.persistence.Embeddable;
 
 @Embeddable
-@Document(collection = "users")
+@Document(collection = "Users")
 public class Workplace {
 
     private String hospitalName;
+    private String type;
     private String country;
     private String city;
     private String streetName;
@@ -53,5 +54,13 @@ public class Workplace {
 
     public void setStreetNo(Integer streetNo) {
         this.streetNo = streetNo;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

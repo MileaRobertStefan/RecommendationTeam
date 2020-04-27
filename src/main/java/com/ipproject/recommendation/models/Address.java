@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.persistence.*;
 
 @Embeddable
-@Document(collection = "users")
+@Document(collection = "Users")
 public class Address {
 
     private String country;

@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Document(collection = "illnesses")
+@Document(collection = "Illnesses")
 public class Illness {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

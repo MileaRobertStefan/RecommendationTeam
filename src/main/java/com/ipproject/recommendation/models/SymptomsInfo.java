@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
 @Entity
-@Document(collection = "symptomsInfo")
+@Document(collection = "SymptompsInfo")
 public class SymptomsInfo {
     @Id
     private String id;

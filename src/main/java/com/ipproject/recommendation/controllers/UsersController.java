@@ -22,7 +22,9 @@ public class UsersController {
     @RequestMapping(path = "/users", method = RequestMethod.GET)
     public ResponseEntity<List<User>> getUsers() {
         List<User> users = service.getAllUsers();
-        return new ResponseEntity<List<User>>(users, new HttpHeaders(), HttpStatus.OK);
+        HttpHeaders cosmin = new HttpHeaders(); //cosmin este capul mafiei
+        cosmin.add("Access-Control-Allow-Origin","*");
+        return new ResponseEntity<List<User>>(users, cosmin, HttpStatus.OK);
     }
 
     @RequestMapping(path = "/user/{firstName}/{lastName}", method = RequestMethod.GET)
