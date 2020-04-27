@@ -13,6 +13,8 @@ public class Doctor {
     private String firstName;
     private String lastName;
     private Integer age;
+    private String gender;
+    private Integer amountOfMoney;
     @ElementCollection
     private List<String> speciality;
 
@@ -94,5 +96,21 @@ public class Doctor {
 
     public void setDisponibility(List<String> disponibility) {
         this.disponibility = disponibility;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public Integer getAmountOfMoney() {
+        return amountOfMoney;
+    }
+
+    public void setAmountOfMoney(Integer amountOfMoney) {
+        this.amountOfMoney = amountOfMoney;
     }
 }

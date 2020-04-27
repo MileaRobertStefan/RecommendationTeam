@@ -1,0 +1,14 @@
+{
+    "simptoms":{
+    "bodyPart":"Cap",
+    "simptomType":"asd",
+    "sick":false,
+    "lastControlDate":"2020-04-07T21:00:00.000Z"},
+    "info":{
+        "sameAddress":false,
+        "actualAdress":"asd",
+        "medic":"femeie",
+        "clinic":"stat",
+        "priceLimit":[0,1327]
+        }
+}

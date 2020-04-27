@@ -28,11 +28,12 @@ export class AppComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   sliderValue: number;
-  options: Observable<string[]>;
+  response:Object[];
+  options: string[];
   chosenZoneOptions: string[];
   zoneOptions: Object;
-  filteredOptions: Observable<string[]>
-  filteredSecondOptions: Observable<string[]>;
+  filteredOptions: string[];
+  filteredSecondOptions: string[];
 
 
   jsonObject = {
@@ -47,7 +48,7 @@ export class AppComponent implements OnInit {
       actualAdress: '',
       medic: '',
       clinic: '',
-      priceLimit: [0, 0]
+      priceLimit: 0
     }
   }
 
@@ -81,8 +82,8 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit() {
-    var a = this.getSimptoms()
-    console.log(a)
+     this.getSimptoms()
+     console.log("lalala",this.response)
     this.firstFormGroup = this._formBuilder.group({
       bodyPartControl: [''],
       simptomTypeControl: ['', Validators.required],
@@ -96,19 +97,9 @@ export class AppComponent implements OnInit {
       clinicControl: ['', Validators.required]
     })
 
-
-    this.filteredOptions = this.firstFormGroup.controls.bodyPartControl.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this._filter(value))
-      ),
-      this.filteredSecondOptions = this.firstFormGroup.controls.simptomTypeControl.valueChanges
-        .pipe(
-          startWith(''),
-          map(value => this._filter2(value))
-        );
-    this.filteredOptions.subscribe();
-    this.filteredSecondOptions.subscribe();
+    this.firstFormGroup.controls.bodyPartControl.valueChanges.subscribe(() => {
+      this.firstFormGroup.controls.simptomTypeControl.reset();
+    });
   }
 
   private _filter(value: string): string[] {
@@ -116,9 +107,10 @@ export class AppComponent implements OnInit {
     const chosenZone = this.firstFormGroup.controls.bodyPartControl.value;
     this.chosenZoneOptions = this.zoneOptions[chosenZone];
     console.log(this.options)
-    if(this.options!==undefined){
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));}
-    else{return ["lalala"]}
+    if (this.options !== undefined) {
+      return this.options.filter(option => option.toLowerCase().includes(filterValue));
+    }
+    else { return ["lalala"] }
   }
   private _filter2(value: string): string[] {
     const filterValue = value.toLowerCase();
@@ -161,44 +153,43 @@ export class AppComponent implements OnInit {
     this.jsonObject.info.actualAdress = this.thirdFormGroup.controls.newLocationControl.value;
     this.jsonObject.info.medic = this.thirdFormGroup.controls.medicControl.value;
     this.jsonObject.info.clinic = this.thirdFormGroup.controls.clinicControl.value;
-    this.jsonObject.info.priceLimit = [0, this.sliderValue]
+    this.jsonObject.info.priceLimit = this.sliderValue;
   }
 
-  private getSimptoms()  {
-            this.http.get('http://localhost:3000/api/v1/recommendation').toPromise().then(data => {
-                  this.setOptions(data[0].options);
-                  this.zoneOptions = data[0];
-                  console.log('Subscribe executed.')
-                  //     console.log(this.options );  
-            }).catch(err => console.log("err", err));
-         
-      console.log('I will not wait until subscribe is executed..');
-      console.log(this.options);
-    }
-   setOptions(vector){
-       this.options=vector;
-   }
-  sendJson() {
-//     console.log(this.options+ " 3");
-    const json = JSON.stringify(this.jsonObject);
-    console.log(json);
-    this.http.post<any>('http://localhost:3000/api/v1/recommendation', { simptoms: this.jsonObject.simptoms, info: this.jsonObject.info }).subscribe(data => {
-      this.jsonObject = data['jsonObject'];
-    });
+  private getSimptoms() {
+    this.http.get<any>('http://localhost:3000/api/v1/recommendation').subscribe( data => {
+      this.setOptions(data[0].options); 
+      this.zoneOptions = data[0];
+      this.filteredOptions = data[0]["options"];
+    })
 
+    console.log('I will not wait until subscribe is executed..');
+    console.log(this.options);
+  }
+
+  public get symptoms(){
+    return this.zoneOptions[this.firstFormGroup.controls.bodyPartControl.value];
+  }
+
+ 
+
+  setOptions(vector) {
+    this.options = vector;
+  }
+  sendJson() {
+    //     console.log(this.options+ " 3");
+    const json = JSON.stringify(this.jsonObject);
+    console.log(this.jsonObject);
+    this.http.post<any>('http://localhost:3000/api/v1/recommendation', { simptoms: this.jsonObject.simptoms, info: this.jsonObject.info }).subscribe(data => {
+    console.log(data); 
+    this.response=[...data];
+    // this.jsonObject = data['jsonObject']; 
+    });
+   // console.log("testul lui milea " +this.response);
+
+  //  console.log("testul lui milea 2" +this.response);
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+// h( cerere , ras => {} )
+ 

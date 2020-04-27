@@ -7,6 +7,7 @@ import com.ipproject.recommendation.repository.DoctorsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -34,19 +35,30 @@ public class DoctorsService {
         return repository.findDoctorById(id);
     }
 
-    public Doctor createOrUpdate(Doctor doctor, Integer age, String firstName, String lastName, List<String>speciality, double rating, Contact contact, List<Workplace>workplaces, List<String> disponibility) {
+    public Doctor createOrUpdate(Doctor doctor, Integer age, String firstName, String lastName, List<String> speciality,
+                                 double rating, Contact contact, List<Workplace> workplaces, List<String> disponibility,
+                                 String gender, Integer amountOfMoney) {
         doctor.setId(UUID.randomUUID().toString());
-       // doctor.setWorkplaces(workplaces);
+        doctor.setWorkplaces(workplaces);
         doctor.setAge(age);
-        //doctor.setContact(contact);
+        doctor.setContact(contact);
         doctor.setFirstName(firstName);
         doctor.setLastName(lastName);
         doctor.setDisponibility(disponibility);
         doctor.setRating(rating);
         doctor.setSpeciality(speciality);
-
+        doctor.setGender(gender);
+        doctor.setAmountOfMoney(amountOfMoney);
         doctor = repository.save(doctor);
         return doctor;
+    }
+
+    public List<Doctor> find(String gender, Integer amountOfMoney, String type) {
+        return  repository.find(type,gender,amountOfMoney);
+    }
+
+    public List<Doctor> findByZone(String gender, Integer amountOfMoney, String type, String speciality) {
+        return  repository.findByZone(type,gender,amountOfMoney, speciality);
     }
 
 
