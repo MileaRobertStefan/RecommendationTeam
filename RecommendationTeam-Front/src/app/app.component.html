@@ -187,7 +187,7 @@
     <p class="inf2">Mulțumim pentru timpul acordat. Poți vedea recomandările noastre apăsând butonul "Vezi recomandări".</p>
     <div>
       <button mat-button matStepperPrevious>Înapoi</button>
-      <button mat-button (click)="sendJson()" >Vezi recomandări </button>
+      <a routerLink="/recommendation"><button mat-button (click)="sendJson()" >Vezi recomandări </button></a>
     </div>
   </mat-step>
 </mat-horizontal-stepper>

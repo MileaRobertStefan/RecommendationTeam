@@ -1,6 +1,7 @@
 
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, ValidationErrors } from '@angular/forms';
+import { Router, Event, NavigationStart, NavigationEnd, NavigationError, NavigationCancel } from '@angular/router';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { AbstractControl } from '@angular/forms'
@@ -77,7 +78,23 @@ export class AppComponent implements OnInit {
     { value: 'stat', viewValue: 'De stat' }
   ];
 
-  constructor(private _formBuilder: FormBuilder, private http: HttpClient) { }
+  constructor(private _formBuilder: FormBuilder, private http: HttpClient,private router: Router) { 
+    router.events.subscribe((routerEvent: Event) => {
+      this.checkRouterEvent(routerEvent);
+    });
+  }
+  loading = true;
+  checkRouterEvent(routerEvent: Event): void {
+    if (routerEvent instanceof NavigationStart) {
+      this.loading = true;
+    }
+
+    if (routerEvent instanceof NavigationEnd ||
+      routerEvent instanceof NavigationCancel ||
+      routerEvent instanceof NavigationError) {
+      this.loading = false;
+    }
+  }
 
 
 
@@ -102,26 +119,26 @@ export class AppComponent implements OnInit {
     });
   }
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    const chosenZone = this.firstFormGroup.controls.bodyPartControl.value;
-    this.chosenZoneOptions = this.zoneOptions[chosenZone];
-    console.log(this.options)
-    if (this.options !== undefined) {
-      return this.options.filter(option => option.toLowerCase().includes(filterValue));
-    }
-    else { return ["lalala"] }
-  }
-  private _filter2(value: string): string[] {
-    const filterValue = value.toLowerCase();
+  // private _filter(value: string): string[] {
+  //   const filterValue = value.toLowerCase();
+  //   const chosenZone = this.firstFormGroup.controls.bodyPartControl.value;
+  //   this.chosenZoneOptions = this.zoneOptions[chosenZone];
+  //   console.log(this.options)
+  //   if (this.options !== undefined) {
+  //     return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  //   }
+  //   else { return ["lalala"] }
+  // }
+  // private _filter2(value: string): string[] {
+  //   const filterValue = value.toLowerCase();
 
-    if (this.chosenZoneOptions !== undefined) {
-      return this.chosenZoneOptions.filter(option => option.toLowerCase().includes(filterValue))
-    }
-    else {
-      return []
-    }
-  }
+  //   if (this.chosenZoneOptions !== undefined) {
+  //     return this.chosenZoneOptions.filter(option => option.toLowerCase().includes(filterValue))
+  //   }
+  //   else {
+  //     return []
+  //   }
+  // }
 
   getValuesStepOne() {
 

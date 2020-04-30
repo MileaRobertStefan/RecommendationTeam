@@ -13,6 +13,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 // import {MdSelectModule} from '@angular/material/select';
 import { enableProdMode } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import {Recommendation} from './recommendation/recommendation'
 enableProdMode();
 
 
@@ -20,6 +21,7 @@ enableProdMode();
 @NgModule({
   declarations: [
     AppComponent,
+    Recommendation
   ],
   imports: [
     // MdSelectModule,
@@ -35,7 +37,7 @@ enableProdMode();
     DemoMaterialModule,
     HttpClientModule
   ],
-  entryComponents: [],
+  entryComponents: [Recommendation],
   providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'legacy' } }],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
