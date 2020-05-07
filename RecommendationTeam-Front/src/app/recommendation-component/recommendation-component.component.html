@@ -1,2 +1,52 @@
-<p>recommendation-component works!</p>
-<router-outlet></router-outlet>
+<body style="padding-left: 20px; padding-right: 20px;">
+    <mat-accordion>
+        <mat-list role="list" *ngFor="let item of results">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{item.firstName}} {{item.lastName}}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        <mat-list *ngFor="let item1 of item.speciality">
+                            {{item1}}
+                        </mat-list>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <p>Rating: {{item.rating}}</p>
+
+                <p>Contact:</p>
+                <div style="display: flex; flex-direction: row; justify-content: flex-start;">
+                    <span style="margin-left: 10px;"> Phone: {{item.contact.phone}}</span>
+                    <br />
+                    <span style="margin-left: 10px;"> Email:{{item.contact.email}}</span>
+                </div>
+                <p>Hospitals:</p>
+                <mat-list *ngFor="let item2 of item.workplaces">
+
+                    <mat-list-item>
+                        <div style="display: flex; flex-direction:row; justify-content: flex-start;">
+                            <span style="margin-left: 10px;"> {{item2.hospitalName}}</span>
+                            <br />
+                            <span style="margin-left: 10px;"> {{item2.city}}</span>
+                            <br />
+                            <span style="margin-left: 10px;"> {{item2.streetName}}</span>
+                            <br />
+                            <span style="margin-left: 10px;"> {{item2.streetNo}}</span>
+                        </div>
+                    </mat-list-item>
+
+                </mat-list>
+
+                <p>Disponibilitate:</p>
+                <div style="display: flex; flex-direction: row; justify-content:flex-start;">
+                    <mat-list *ngFor="let item3 of item.disponibility">
+                        <mat-list-item><span>{{item3}}</span></mat-list-item>
+                    </mat-list>
+                </div>
+            </mat-expansion-panel>
+        </mat-list>
+        <button style="margin-left: 20px; margin-top: 10px;" mat-raised-button color="primary" mat-button>Vezi
+            medicamente</button>
+    </mat-accordion>
+</body>

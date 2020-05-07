@@ -176,18 +176,14 @@
         <button mat-button matStepperNext (click)="getCurrentInfo()">Următorul</button>
       </div>
     
-  </mat-step>
-  
-  
-  
-  
+  </mat-step>  
     <mat-step>
       <ng-template matStepLabel>Salvare</ng-template>
       <p class="inf"><b>Informațiile tale au fost înregistrate!</b></p>
       <p class="inf2">Mulțumim pentru timpul acordat. Poți vedea recomandările noastre apăsând butonul "Vezi recomandări".</p>
       <div>
         <button mat-button matStepperPrevious>Înapoi</button>
-        <a routerLink="/second-component"><button mat-button (click)="sendJson()" >Vezi recomandări </button></a>
+        <button mat-button (click)="sendJson()" >Vezi recomandări </button>
         
       </div>
     </mat-step>

@@ -1,9 +1,9 @@
 
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, ValidationErrors } from '@angular/forms';
-import {Event, NavigationStart, NavigationEnd, NavigationError, NavigationCancel, ActivatedRoute } from '@angular/router';
-import {Router} from '@angular/router'
-import { HttpClient } from '@angular/common/http'
+import { Event, NavigationStart, NavigationEnd, NavigationError, NavigationCancel, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router'
+import { HttpClient, HttpResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 interface Choice {
   value: string;
@@ -22,13 +22,13 @@ export class FormComponentComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   sliderValue: number;
-  response:Object[];
+  response: Object[];
   options: string[];
   chosenZoneOptions: string[];
   zoneOptions: Object;
   filteredOptions: string[];
   filteredSecondOptions: string[];
-  route:ActivatedRoute;
+  route: ActivatedRoute;
 
   jsonObject = {
     simptoms: {
@@ -71,7 +71,7 @@ export class FormComponentComponent implements OnInit {
     { value: 'stat', viewValue: 'De stat' }
   ];
 
-  constructor(private _formBuilder: FormBuilder, private http: HttpClient,private router: Router) { 
+  constructor(private _formBuilder: FormBuilder, private http: HttpClient, private router: Router) {
     // router.events.subscribe((routerEvent: Event) => {
     //   this.checkRouterEvent(routerEvent);
     // });
@@ -94,8 +94,8 @@ export class FormComponentComponent implements OnInit {
 
 
   ngOnInit() {
-     this.getSimptoms()
-     console.log("lalala",this.response)
+    this.getSimptoms()
+    console.log("lalala", this.response)
     this.firstFormGroup = this._formBuilder.group({
       bodyPartControl: [''],
       simptomTypeControl: ['', Validators.required],
@@ -149,8 +149,8 @@ export class FormComponentComponent implements OnInit {
   }
 
   private getSimptoms() {
-    this.http.get<any>('http://localhost:3000/api/v1/recommendation').subscribe( data => {
-      this.setOptions(data[0].options); 
+    this.http.get<any>('http://localhost:3000/api/v1/recommendation').subscribe(data => {
+      this.setOptions(data[0].options);
       this.zoneOptions = data[0];
       this.filteredOptions = data[0]["options"];
     })
@@ -159,27 +159,37 @@ export class FormComponentComponent implements OnInit {
     console.log(this.options);
   }
 
-  public get symptoms(){
+  public get symptoms() {
     return this.zoneOptions[this.firstFormGroup.controls.bodyPartControl.value];
   }
 
- 
+
 
   setOptions(vector) {
     this.options = vector;
   }
   sendJson() {
-    //     console.log(this.options+ " 3");
     const json = JSON.stringify(this.jsonObject);
     console.log(this.jsonObject);
-    this.http.post<any>('http://localhost:3000/api/v1/recommendation', { simptoms: this.jsonObject.simptoms, info: this.jsonObject.info }).subscribe(data => {
-    console.log(data); 
-    this.response=[...data];
-    // this.jsonObject = data['jsonObject']; 
-    });
-   // console.log("testul lui milea " +this.response);
-
-  //  console.log("testul lui milea 2" +this.response);
+    this.http.post<any>('http://localhost:3000/api/v1/recommendation', { simptoms: this.jsonObject.simptoms, info: this.jsonObject.info })
+      .subscribe((response) => {
+        const guid: string = response['guid'];
+        console.log("aiiiciiii", guid);
+        this.router.navigate(["second-component", guid]);
+      });
   }
 
+  // sendJson() {
+  //   //     console.log(this.options+ " 3");
+  //   const json = JSON.stringify(this.jsonObject);
+  //   console.log(this.jsonObject);
+  //   this.http.post<any>('http://localhost:3000/api/v1/recommendation', { simptoms: this.jsonObject.simptoms, info: this.jsonObject.info }).subscribe(data => {
+  //     console.log(data);
+  //     this.response = [...data];
+  //     // this.jsonObject = data['jsonObject']; 
+  //   });
+  //   // console.log("testul lui milea " +this.response);
+
+  //   //  console.log("testul lui milea 2" +this.response);
+  // }
 }
