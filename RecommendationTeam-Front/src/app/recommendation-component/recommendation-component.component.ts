@@ -12,7 +12,9 @@ export class RecommendationComponentComponent implements OnInit {
 
   constructor(private activeRoute: ActivatedRoute, private httpClient: HttpClient) { }
   public get results() {
+    console.log(this.result)
     return this.result;
+    
   }
   ngOnInit(): void {
     this.activeRoute.url.subscribe(url => {
