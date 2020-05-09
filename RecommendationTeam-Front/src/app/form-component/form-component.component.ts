@@ -29,6 +29,7 @@ export class FormComponentComponent implements OnInit {
   filteredOptions: string[];
   filteredSecondOptions: string[];
   route: ActivatedRoute;
+  maxDate: Date;
 
   jsonObject = {
     simptoms: {
@@ -74,8 +75,11 @@ export class FormComponentComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder, private http: HttpClient, private router: Router) {
     // router.events.subscribe((routerEvent: Event) => {
     //   this.checkRouterEvent(routerEvent);
-    // });
+    // });  
+    const currentYear = new Date().getFullYear();
+    this.maxDate = new Date();
   }
+
   loading = true;
   checkRouterEvent(routerEvent: Event): void {
     if (routerEvent instanceof NavigationStart) {
