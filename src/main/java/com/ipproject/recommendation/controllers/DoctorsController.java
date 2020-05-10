@@ -25,6 +25,12 @@ public class DoctorsController {
         return new ResponseEntity<List<Doctor>>(doctors, new HttpHeaders(), HttpStatus.OK);
     }
 
+    @RequestMapping(path = "/hello", method = RequestMethod.GET)
+    public ResponseEntity<String> getDoctors() {
+
+        return new ResponseEntity<>("Hello world", new HttpHeaders(), HttpStatus.OK);
+    }
+
     @RequestMapping(path = "/doctors/{firstName}/{lastName}", method = RequestMethod.GET)
     public ResponseEntity<Doctor> getDoctor(@PathVariable String firstName, @PathVariable String lastName) {
         Doctor doctor = service.getOneDoctor(firstName, lastName);
