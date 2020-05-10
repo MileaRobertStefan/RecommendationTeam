@@ -26,7 +26,7 @@ public class DoctorsController {
     }
 
     @RequestMapping(path = "/hello", method = RequestMethod.GET)
-    public ResponseEntity<String> getDoctors() {
+    public ResponseEntity<String> getHello() {
 
         return new ResponseEntity<>("Hello world", new HttpHeaders(), HttpStatus.OK);
     }
