@@ -37,10 +37,10 @@ public class PrepareInput {
 
     public PrepareInput(String input, DoctorsService doctorsService) {
         try {
-                JSONObject jObject = new JSONObject(input);
-                jInfo = new JSONObject(jObject.get(info).toString());
-                jSimptoms = new JSONObject(jObject.get(simptoms).toString());
-                service = doctorsService;
+            JSONObject jObject = new JSONObject(input);
+            jInfo = new JSONObject(jObject.get(info).toString());
+            jSimptoms = new JSONObject(jObject.get(simptoms).toString());
+            service = doctorsService;
         } catch (Exception ignored) {
             System.out.println(ignored);
         }
@@ -67,11 +67,12 @@ public class PrepareInput {
             put("picioare", "Medicina Pulmonara");
             put("abdomen", "Oncologie");
         }
+
     };
 
     public List<Doctor> findByZone() throws JSONException {
         return service.findByZone(jInfo.getString(type), jInfo.getInt(priceLimit), jInfo.getString(gender), specByBodyZone.get(jSimptoms.getString(bodyPart)));
 
-        
+
     }
 }
