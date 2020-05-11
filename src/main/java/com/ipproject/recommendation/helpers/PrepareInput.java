@@ -1,12 +1,15 @@
 package com.ipproject.recommendation.helpers;
 
+import com.ipproject.recommendation.models.Dictionar;
 import com.ipproject.recommendation.models.Doctor;
+import com.ipproject.recommendation.service.DictionarService;
 import com.ipproject.recommendation.service.DoctorsService;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +37,9 @@ public class PrepareInput {
 
     @Autowired
     private DoctorsService service;
+    @Autowired
+    private DictionarService dictionarService;
+    Map<String, List<String>> specByBodyZone;
 
     public PrepareInput(String input, DoctorsService doctorsService) {
         try {
@@ -44,10 +50,25 @@ public class PrepareInput {
         } catch (Exception ignored) {
             System.out.println(ignored);
         }
+        specByBodyZone = new HashMap<String, List<String>>();
 
-        System.out.println("1 " + doctorsService);
-        System.out.println("3 " + jInfo);
-        System.out.println("4 " + jSimptoms);
+    }
+
+    public void init() {
+        Dictionar dictionar = dictionarService.getDictionar();
+
+        specByBodyZone.put("abdomen", dictionar.getAbdomen());
+        specByBodyZone.put("brate", dictionar.getBrate());
+        specByBodyZone.put("cap", dictionar.getCap());
+        specByBodyZone.put("dantura", dictionar.getDantura());
+        specByBodyZone.put("ficat", dictionar.getFicat());
+        specByBodyZone.put("gat", dictionar.getGat());
+        specByBodyZone.put("stomac", dictionar.getStomac());
+        specByBodyZone.put("inima", dictionar.getInima());
+        specByBodyZone.put("nas", dictionar.getNas());
+        specByBodyZone.put("picioare", dictionar.getPicioare());
+        specByBodyZone.put("piept", dictionar.getPiept());
+        specByBodyZone.put("urechi", dictionar.getUrechi());
 
     }
 
@@ -55,24 +76,15 @@ public class PrepareInput {
         return service.find(jInfo.getString(type), jInfo.getInt(priceLimit), jInfo.getString(gender));
     }
 
-    Map<String, String> specByBodyZone = new HashMap<String, String>()
-    {
-        {//proof of concept
-            put("cap", "Neurologie");
-            put("gat", "Endocrine");
-            put("piept", "Cardiologie");
-            put("stomac", "Gastroenterologie");
-            put("spate", "Boli infectioase");
-            put("brate", "Chirurgie Generala");
-            put("picioare", "Medicina Pulmonara");
-            put("abdomen", "Oncologie");
-        }
-
-    };
 
     public List<Doctor> findByZone() throws JSONException {
-        return service.findByZone(jInfo.getString(type), jInfo.getInt(priceLimit), jInfo.getString(gender), specByBodyZone.get(jSimptoms.getString(bodyPart)));
+        List<Doctor> doctors = new ArrayList<>();
 
+        for (String nume : specByBodyZone.get(jSimptoms.getString(bodyPart))) {
+            doctors.addAll(service.findByZone(jInfo.getString(type), jInfo.getInt(priceLimit), jInfo.getString(gender), nume));
+        }
+
+        return doctors;
 
     }
 }

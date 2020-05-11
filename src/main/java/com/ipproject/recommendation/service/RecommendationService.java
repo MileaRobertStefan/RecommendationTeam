@@ -1,9 +1,7 @@
 package com.ipproject.recommendation.service;
 
 
-import com.ipproject.recommendation.models.Prefference;
-
-import com.ipproject.recommendation.models.ZZZTest;
+import com.ipproject.recommendation.models.RaspunsPentruIoana;
 import com.ipproject.recommendation.repository.RecommendationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,8 +17,8 @@ public class RecommendationService {
     @Autowired
     RecommendationRepository repository;
 
-    public List<ZZZTest> getAllMileaTest() {
-        List<ZZZTest> prefferences = repository.findAll();
+    public List<RaspunsPentruIoana> getAllMileaTest() {
+        List<RaspunsPentruIoana> prefferences = repository.findAll();
         if (prefferences.size() > 0) {
             return prefferences;
         } else {
@@ -28,11 +26,11 @@ public class RecommendationService {
         }
     }
 
-    public ZZZTest getMileaTestById(String id) {
+    public RaspunsPentruIoana getMileaTestById(String id) {
         return repository.findMileaTestById(id);
     }
 
-    public ZZZTest createOrUpdate(ZZZTest prefference , List<String> doctorsID) {
+    public RaspunsPentruIoana createOrUpdate(RaspunsPentruIoana prefference , List<String> doctorsID) {
         prefference.setId(UUID.randomUUID().toString());
         prefference.setDoctorsID(doctorsID);
 

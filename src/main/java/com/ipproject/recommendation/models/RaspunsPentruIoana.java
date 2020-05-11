@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Document(collection = "MileaTest")
-public class ZZZTest {
+public class RaspunsPentruIoana {
 
     @Id
     private String id;
