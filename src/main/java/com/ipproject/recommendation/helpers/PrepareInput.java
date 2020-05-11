@@ -1,14 +1,14 @@
 package com.ipproject.recommendation.helpers;
 
-import com.ipproject.recommendation.models.Dictionar;
+import com.ipproject.recommendation.models.Dictionary;
 import com.ipproject.recommendation.models.Doctor;
 import com.ipproject.recommendation.service.DictionarService;
 import com.ipproject.recommendation.service.DoctorsService;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,36 +39,38 @@ public class PrepareInput {
     private DoctorsService service;
     @Autowired
     private DictionarService dictionarService;
+
     Map<String, List<String>> specByBodyZone;
 
-    public PrepareInput(String input, DoctorsService doctorsService) {
+    public PrepareInput(String input, DoctorsService doctorsService , DictionarService dictionary) {
         try {
             JSONObject jObject = new JSONObject(input);
             jInfo = new JSONObject(jObject.get(info).toString());
             jSimptoms = new JSONObject(jObject.get(simptoms).toString());
             service = doctorsService;
+            dictionarService = dictionary;
         } catch (Exception ignored) {
             System.out.println(ignored);
         }
         specByBodyZone = new HashMap<String, List<String>>();
-
+        init();
     }
 
     public void init() {
-        Dictionar dictionar = dictionarService.getDictionar();
+        Dictionary dictionary = dictionarService.getDictionar();
 
-        specByBodyZone.put("abdomen", dictionar.getAbdomen());
-        specByBodyZone.put("brate", dictionar.getBrate());
-        specByBodyZone.put("cap", dictionar.getCap());
-        specByBodyZone.put("dantura", dictionar.getDantura());
-        specByBodyZone.put("ficat", dictionar.getFicat());
-        specByBodyZone.put("gat", dictionar.getGat());
-        specByBodyZone.put("stomac", dictionar.getStomac());
-        specByBodyZone.put("inima", dictionar.getInima());
-        specByBodyZone.put("nas", dictionar.getNas());
-        specByBodyZone.put("picioare", dictionar.getPicioare());
-        specByBodyZone.put("piept", dictionar.getPiept());
-        specByBodyZone.put("urechi", dictionar.getUrechi());
+        specByBodyZone.put("abdomen", dictionary.getAbdomen());
+        specByBodyZone.put("brate", dictionary.getBrate());
+        specByBodyZone.put("cap", dictionary.getCap());
+        specByBodyZone.put("dantura", dictionary.getDantura());
+        specByBodyZone.put("ficat", dictionary.getFicat());
+        specByBodyZone.put("gat", dictionary.getGat());
+        specByBodyZone.put("stomac", dictionary.getStomac());
+        specByBodyZone.put("inima", dictionary.getInima());
+        specByBodyZone.put("nas", dictionary.getNas());
+        specByBodyZone.put("picioare", dictionary.getPicioare());
+        specByBodyZone.put("piept", dictionary.getPiept());
+        specByBodyZone.put("urechi", dictionary.getUrechi());
 
     }
 
@@ -81,6 +83,7 @@ public class PrepareInput {
         List<Doctor> doctors = new ArrayList<>();
 
         for (String nume : specByBodyZone.get(jSimptoms.getString(bodyPart))) {
+
             doctors.addAll(service.findByZone(jInfo.getString(type), jInfo.getInt(priceLimit), jInfo.getString(gender), nume));
         }
 

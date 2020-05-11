@@ -1,22 +1,26 @@
 package com.ipproject.recommendation.service;
 
 
-import com.ipproject.recommendation.models.Dictionar;
+import com.ipproject.recommendation.models.Dictionary;
 import com.ipproject.recommendation.repository.DictionaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class DictionarService {
+
     @Autowired
-    DictionaryRepository repository;
+    private DictionaryRepository repository;
 
-  public   Dictionar getDictionar() {
-
-        List<Dictionar> raspuns = repository.findAll();
+    public Dictionary getDictionar() {
+        List<Dictionary> raspuns = repository.findAll();
         if (raspuns.size() > 0) {
             return raspuns.get(0);
-        } else return new Dictionar();
+        } else {
+            return new Dictionary();
+        }
     }
 
 }

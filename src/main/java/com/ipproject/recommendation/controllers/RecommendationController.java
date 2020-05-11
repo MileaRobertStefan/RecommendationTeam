@@ -27,6 +27,8 @@ public class RecommendationController {
     private DoctorsService serviceDoctor;
     @Autowired
     private RecommendationService recommendationService;
+    @Autowired
+    private  DictionarService dictionarService;
 
     @RequestMapping(path = "/recommendation", method = RequestMethod.GET)
     public ResponseEntity<List<SymptomsInfo>> getRecommendation() {
@@ -40,7 +42,7 @@ public class RecommendationController {
         // System.out.println(json);
 
         try {
-            PrepareInput prepareInput = new PrepareInput(input, serviceDoctor);
+            PrepareInput prepareInput = new PrepareInput(input, serviceDoctor ,dictionarService);
 
             List<Doctor> doctorList = (prepareInput.findByZone());
             List<String> strings = new ArrayList<>();
@@ -74,7 +76,7 @@ public class RecommendationController {
     public ResponseEntity<List<RaspunsPentruIoana>> postTest(@RequestBody String input) {
         // System.out.println(json);
 
-        PrepareInput prepareInput = new PrepareInput(input, serviceDoctor);
+        PrepareInput prepareInput = new PrepareInput(input, serviceDoctor ,dictionarService);
         return new ResponseEntity<List<RaspunsPentruIoana>>(recommendationService.getAllMileaTest(), new HttpHeaders(), HttpStatus.OK);
 
 

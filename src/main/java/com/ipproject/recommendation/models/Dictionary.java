@@ -1,12 +1,13 @@
 package com.ipproject.recommendation.models;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.persistence.*;
 import java.util.List;
 
-public class Dictionar {
+@Entity
+@Document(collection = "Dictionary")
+public class Dictionary {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
