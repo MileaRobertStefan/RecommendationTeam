@@ -17,7 +17,7 @@ export class RecommendationComponentComponent implements OnInit {
   ngOnInit(): void {
     this.activeRoute.url.subscribe(url => {
       const guid = url.pop()
-      this.httpClient.get<any>(`http://localhost:3000/api/v1/testmilea/${guid}`).subscribe(data => {
+      this.httpClient.get<any>(`https://recommendation-team.herokuapp.com/api/v1/testmilea/${guid}`).subscribe(data => {
         this.result = data;
         console.log("test1", this.result);
       })
