@@ -1,6 +1,6 @@
 
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl, ValidationErrors } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { Event, NavigationStart, NavigationEnd, NavigationError, NavigationCancel, ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router'
 import { HttpClient, HttpResponse } from '@angular/common/http'
@@ -29,6 +29,7 @@ export class FormComponentComponent implements OnInit {
   filteredOptions: string[];
   filteredSecondOptions: string[];
   route: ActivatedRoute;
+  maxDate: Date;
 
   jsonObject = {
     simptoms: {
@@ -74,8 +75,11 @@ export class FormComponentComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder, private http: HttpClient, private router: Router) {
     // router.events.subscribe((routerEvent: Event) => {
     //   this.checkRouterEvent(routerEvent);
-    // });
+    // });  
+    const currentYear = new Date().getFullYear();
+    this.maxDate = new Date();
   }
+
   loading = true;
   checkRouterEvent(routerEvent: Event): void {
     if (routerEvent instanceof NavigationStart) {
@@ -92,7 +96,23 @@ export class FormComponentComponent implements OnInit {
     this.router.navigate(['items'], { relativeTo: this.route });
   }
 
+  notAdress() : ValidatorFn { 
+    return (form: FormComponentComponent["thirdFormGroup"]): ValidationErrors | null => {
 
+       let checked = form.controls.locationControl.value;
+     let second= form.controls.newLocationControl.value;
+      console.log("check",checked)
+      console.log("sec",second)
+      if (checked=="nu" && !second) {
+        console.log("da")
+        return {
+          'err': true
+        };
+      }
+      return null;
+    }
+  }
+    
   ngOnInit() {
     this.getSimptoms()
     console.log("lalala", this.response)
@@ -104,11 +124,11 @@ export class FormComponentComponent implements OnInit {
     });
     this.thirdFormGroup = this._formBuilder.group({
       locationControl: ['', Validators.required],
-      newLocationControl: ['', Validators.required],
+      newLocationControl: [''] , 
       medicControl: ['', Validators.required],
       clinicControl: ['', Validators.required]
-    })
-
+    } , {validators : this.notAdress()}  )
+    
     this.firstFormGroup.controls.bodyPartControl.valueChanges.subscribe(() => {
       this.firstFormGroup.controls.simptomTypeControl.reset();
     });

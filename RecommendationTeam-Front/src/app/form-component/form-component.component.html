@@ -54,7 +54,7 @@
       
           <mat-form-field class="example-full-width">
             <mat-label>Data ultimului control medical (măcar aproximativ)</mat-label>
-            <input matInput [formControl]="this.firstFormGroup.controls.lastDateControl" [matDatepicker]="picker">
+            <input matInput [formControl]="this.firstFormGroup.controls.lastDateControl" [matDatepicker]="picker" [max]="maxDate">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker> 
              
@@ -132,10 +132,12 @@
     
         <mat-form-field class="exampchoicesControlle-full-width form-field">
           <mat-label>Introduceți noua adresă (dacă este cazul)</mat-label>
-            <input matInput required [formControl]="this.thirdFormGroup.controls.newLocationControl">
-            <mat-error *ngIf="this.thirdFormGroup.controls.locationControl.hasError('required')">
+            <input matInput [formControl]="this.thirdFormGroup.controls.newLocationControl">
+          
+ <!-- required dupa matinput -->
+            <!-- <mat-error *ngIf="this.thirdFormGroup.controls.locationControl.hasError('required')">
                   Noua adresă trebuie să fie introdusă
-            </mat-error>
+            </mat-error> -->
           </mat-form-field>
     
         <mat-form-field class="form-field">

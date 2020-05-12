@@ -1,15 +1,19 @@
-body{
-    background-color:#3f51b5;
-    }
+
+  html,body {
+    background-color: #F8F8F8;
+    width:100%;
+    height:100% !important;
+}
+    
     mat-card
     {
       display: flex;
       justify-content: center;
       align-items: center;
-  
       margin-left: 300px;
       margin-right:300px;
       flex:1;
+      box-shadow: 5px 10px #F5F5F5;
     }
   
     mat-horizontal-stepper {
