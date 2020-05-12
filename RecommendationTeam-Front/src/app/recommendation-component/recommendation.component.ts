@@ -4,27 +4,23 @@ import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-recommendation-component',
-  templateUrl: './recommendation-component.component.html',
-  styleUrls: ['./recommendation-component.component.css']
+  templateUrl: './recommendation.component.html',
+  styleUrls: ['./recommendation.component.css']
 })
 export class RecommendationComponentComponent implements OnInit {
   private result: Array<{}>
 
   constructor(private activeRoute: ActivatedRoute, private httpClient: HttpClient) { }
   public get results() {
-    console.log(this.result)
     return this.result;
-    
+
   }
   ngOnInit(): void {
     this.activeRoute.url.subscribe(url => {
       const guid = url.pop()
       this.httpClient.get<any>(`https://recommendation-team.herokuapp.com/api/v1/testmilea/${guid}`).subscribe(data => {
         this.result = data;
-        console.log("test1", this.result);
       })
-      // const result = this.httpClient.get(`recommandations/${guid}`);
-      console.log("test2", this.result);
     });
   };
 

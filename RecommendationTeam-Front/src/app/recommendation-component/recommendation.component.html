@@ -1,0 +1,41 @@
+<body>
+    <mat-accordion>
+        <mat-list role="list" *ngFor="let item of results">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="titluri">
+                        {{item.firstName}} {{item.lastName}}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        <mat-list *ngFor="let item1 of item.speciality">
+                            {{item1}}
+                        </mat-list>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <p><b>Rating:</b><span>{{item.rating}}</span></p>
+                <p><b>Preț:</b> {{item.amountOfMoney}} lei</p>
+
+                <p><b>Contact:</b> <span>Număr de telefon: {{item.contact.phone}}</span>
+                    <span>Email: {{item.contact.email}}</span></p>
+                <p class="titluri">Spitale unde activează:</p>
+                <list *ngFor="let item2 of item.workplaces">
+
+                    <p><span class="spanSpital"> {{item2.hospitalName}}</span>
+                        <span> {{item2.city}}</span>
+                        <span> strada {{item2.streetName}} nr. {{item2.streetNo}}</span>
+                    </p>
+
+
+                </list>
+
+                <p class="titluri">Disponibilitate:</p>
+                <div class="divuri">
+                    <list *ngFor="let item3 of item.disponibility">
+                        <list-item><span>{{item3}}</span></list-item>
+                    </list>
+                </div>
+            </mat-expansion-panel>
+        </mat-list>
+    </mat-accordion>
+</body>

@@ -1,13 +1,13 @@
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RecommendationComponentComponent } from './recommendation-component/recommendation-component.component';
-import { FormComponentComponent } from './form-component/form-component.component'
+import { RecommendationComponentComponent } from './recommendation-component/recommendation.component';
+import { FormComponentComponent } from './form-component/form.component'
 
 const routes: Routes = [
   { path: '', component: FormComponentComponent },
-  { path: 'first-component', component: FormComponentComponent },
-  { path: 'second-component/:id', component: RecommendationComponentComponent},
+  { path: 'form', component: FormComponentComponent },
+  { path: 'recommendation/:id', component: RecommendationComponentComponent },
 
 
 ];
