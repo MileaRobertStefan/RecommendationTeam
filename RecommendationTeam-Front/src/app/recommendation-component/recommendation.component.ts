@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RecommendationComponentComponent implements OnInit {
   private result: Array<{}>
+  url = 'https://recommendation-team.herokuapp.com/api/v1/testmilea/'
 
   constructor(private activeRoute: ActivatedRoute, private httpClient: HttpClient) { }
   public get results() {
@@ -18,7 +19,7 @@ export class RecommendationComponentComponent implements OnInit {
   ngOnInit(): void {
     this.activeRoute.url.subscribe(url => {
       const guid = url.pop()
-      this.httpClient.get<any>(`https://recommendation-team.herokuapp.com/api/v1/testmilea/${guid}`).subscribe(data => {
+      this.httpClient.get<any>(this.url + guid).subscribe(data => {
         this.result = data;
       })
     });

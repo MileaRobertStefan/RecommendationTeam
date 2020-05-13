@@ -29,6 +29,7 @@ export class FormComponentComponent implements OnInit {
   filteredSecondOptions: string[];
   route: ActivatedRoute;
   maxDate: Date;
+  url = 'https://recommendation-team.herokuapp.com/api/v1/recommendation';
 
   jsonObject = {
     simptoms: {
@@ -160,7 +161,7 @@ export class FormComponentComponent implements OnInit {
   }
 
   private getSimptoms() {
-    this.http.get<any>('https://recommendation-team.herokuapp.com/api/v1/recommendation').subscribe(data => {
+    this.http.get<any>(this.url).subscribe(data => {
       this.setOptions(data[0].options);
       this.zoneOptions = data[0];
       this.filteredOptions = data[0]["options"];
@@ -178,7 +179,7 @@ export class FormComponentComponent implements OnInit {
     this.options = vector;
   }
   sendJson() {
-    this.http.post<any>('https://recommendation-team.herokuapp.com/api/v1/recommendation', { simptoms: this.jsonObject.simptoms, info: this.jsonObject.info })
+    this.http.post<any>(this.url, { simptoms: this.jsonObject.simptoms, info: this.jsonObject.info })
       .subscribe((response) => {
         const guid: string = response['guid'];
         this.router.navigate(["recommendation", guid]);
