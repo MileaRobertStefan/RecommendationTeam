@@ -4,7 +4,6 @@ body {
     height: 100% !important;
     padding-top: 100px;
 }
-
 mat-card {
     /* display: flex; */
     justify-content: center;
@@ -15,7 +14,6 @@ mat-card {
     flex: 1;
     box-shadow: 5px 10px #F5F5F5;
 }
-
 mat-horizontal-stepper {
     flex: 0 0 inherit;
 }
