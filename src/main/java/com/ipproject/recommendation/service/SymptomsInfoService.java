@@ -2,6 +2,7 @@ package com.ipproject.recommendation.service;
 
 import com.ipproject.recommendation.models.SymptomsInfo;
 import com.ipproject.recommendation.repository.SymptomsInfoRepository;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,10 @@ public class SymptomsInfoService {
         }
     }
 
-    public SymptomsInfo getUserById(String id) {
-        return repository.findSymptomsInfoById(id);
+    public SymptomsInfo getSymptomById(String id) {
+        if(ObjectId.isValid(id)) {
+            return repository.findSymptomsInfoById(id);
+        }
+        else return null;
     }
 }

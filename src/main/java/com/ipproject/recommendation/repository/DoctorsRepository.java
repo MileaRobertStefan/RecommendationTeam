@@ -19,10 +19,10 @@ public interface DoctorsRepository extends MongoRepository<Doctor, String> {
     Doctor findDoctorById(String id);
 
     @Query(value = " {'workplaces.type': ?0, 'gender' : ?1 , 'amountOfMoney' : {$lt : ?2} }")
-    List<Doctor> find( String  type, String gender, Integer amountOfMoney);
+    List<Doctor> find(String type, String gender, Integer amountOfMoney);
 
     @Query(value = " {'workplaces.type': ?0, 'gender' : ?1 , 'amountOfMoney' : {$lt : ?2} , 'speciality'  : ?3 }")
-    List<Doctor> findByZone( String  type, String gender, Integer amountOfMoney, String speciality);
+    List<Doctor> findByZone(String type, String gender, Integer amountOfMoney, String speciality);
 
 
 }

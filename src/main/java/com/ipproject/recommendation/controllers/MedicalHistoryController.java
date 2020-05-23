@@ -28,7 +28,7 @@ public class MedicalHistoryController {
 
     @RequestMapping(path = "/medicalHistories", method = RequestMethod.POST)
     public ResponseEntity<MedicalHistory> createOrUpdateMedicalHistory(@RequestBody MedicalHistory medicalHistory) {
-        MedicalHistory newMedicalHistory= service.createOrUpdate(medicalHistory, medicalHistory.getIllnesses(), medicalHistory.getObservations());
+        MedicalHistory newMedicalHistory = service.createOrUpdate(medicalHistory, medicalHistory.getIllnesses(), medicalHistory.getObservations());
 
         return new ResponseEntity<MedicalHistory>(newMedicalHistory, new HttpHeaders(), HttpStatus.CREATED);
     }

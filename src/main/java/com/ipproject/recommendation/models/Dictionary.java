@@ -24,6 +24,7 @@ public class Dictionary {
     List<String> urechi;
     @ElementCollection
     List<String> gat;
+
     @ElementCollection
     List<String> piept;
     @ElementCollection

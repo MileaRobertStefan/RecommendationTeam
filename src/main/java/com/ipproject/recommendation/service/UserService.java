@@ -4,6 +4,7 @@ import com.ipproject.recommendation.models.Address;
 import com.ipproject.recommendation.models.Contact;
 import com.ipproject.recommendation.models.User;
 import com.ipproject.recommendation.repository.UserRepository;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,8 +31,12 @@ public class UserService {
         return repository.findUserByFirstNameAndLastName(firstName, lastName);
     }
 
-    public User getUserById(String id) {
-        return repository.findUserById(id);
+    public User getUserById(String id) throws Exception {
+        if(ObjectId.isValid(id)) {
+            return repository.findUserById(id);
+        }
+        else throw new Exception("Invalid id");
+
     }
 
     public User createOrUpdate(User user, Integer age, String firstName, String lastName, Integer medicalHistoryId, Contact contact, Address address) {

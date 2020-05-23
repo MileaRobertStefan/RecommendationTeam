@@ -38,14 +38,14 @@ public class DoctorsController {
     }
 
     @RequestMapping(path = "/doctors/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Doctor> getDoctorById(@PathVariable String id) {
+    public ResponseEntity<Doctor> getDoctorById(@PathVariable String id) throws Exception {
         Doctor doctor = service.getDoctorById(id);
         return new ResponseEntity<>(doctor, new HttpHeaders(), HttpStatus.OK);
     }
 
     @RequestMapping(path = "/doctors", method = RequestMethod.POST)
     public ResponseEntity<Doctor> createOrUpdateDoctor(@RequestBody Doctor doctor) {
-        Doctor newDoctor = service.createOrUpdate(doctor, doctor.getAge(), doctor.getFirstName(), doctor.getLastName(), doctor.getSpeciality(), doctor.getRating(), doctor.getContact(), doctor.getWorkplaces(),doctor.getDisponibility(), doctor.getGender(), doctor.getAmountOfMoney());
+        Doctor newDoctor = service.createOrUpdate(doctor, doctor.getAge(), doctor.getFirstName(), doctor.getLastName(), doctor.getSpeciality(), doctor.getRating(), doctor.getContact(), doctor.getWorkplaces(), doctor.getDisponibility(), doctor.getGender(), doctor.getAmountOfMoney());
 
         return new ResponseEntity<Doctor>(newDoctor, new HttpHeaders(), HttpStatus.CREATED);
     }

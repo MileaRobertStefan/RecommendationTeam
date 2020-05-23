@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1")
 public class IllnessesController {
-@Autowired
+    @Autowired
     private IllnessesService service;
 
     @RequestMapping(path = "/illnesses", method = RequestMethod.GET)

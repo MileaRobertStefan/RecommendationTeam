@@ -27,7 +27,7 @@ public class SymptomsInfoController {
 
     @RequestMapping(path = "/symptomsInfo/{id}", method = RequestMethod.GET)
     public ResponseEntity<SymptomsInfo> getSymptomsInfoById(@PathVariable String id) {
-       SymptomsInfo symptomsInfo = service.getUserById(id);
+        SymptomsInfo symptomsInfo = service.getSymptomById(id);
         return new ResponseEntity<>(symptomsInfo, new HttpHeaders(), HttpStatus.OK);
     }
 

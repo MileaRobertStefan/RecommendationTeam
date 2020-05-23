@@ -3,6 +3,7 @@ package com.ipproject.recommendation.service;
 
 import com.ipproject.recommendation.models.Prefference;
 import com.ipproject.recommendation.repository.PrefferencesRepository;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,10 @@ public class PrefferencesService {
     }
 
     public Prefference getPrefferenceById(String id) {
-        return repository.findPrefferenceById(id);
+        if(ObjectId.isValid(id))
+        {
+            return repository.findPrefferenceById(id);
+        }else return null;
     }
 
     public Prefference createOrUpdate(Prefference prefference, Integer amountOfMoney, String hospitalType, String doctorGender) {

@@ -8,6 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.UUID;
@@ -19,11 +20,23 @@ public class UsersController {
     @Autowired
     private UserService service;
 
+    @RequestMapping(path = "/logged_in", method = RequestMethod.GET)
+    public ResponseEntity<String> getLoggedUser() {
+        final String uri = "https://auth-service-ip.herokuapp.com/dbAPI/recomandationInfo/paulpaul1221";
+
+        RestTemplate restTemplate = new RestTemplate();
+        String result = restTemplate.getForObject(uri, String.class);
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add("Access-Control-Allow-Origin", "*");
+        return new ResponseEntity<String>(result, httpHeaders, HttpStatus.OK);
+    }
+
     @RequestMapping(path = "/users", method = RequestMethod.GET)
     public ResponseEntity<List<User>> getUsers() {
         List<User> users = service.getAllUsers();
         HttpHeaders cosmin = new HttpHeaders(); //cosmin este capul mafiei
-        cosmin.add("Access-Control-Allow-Origin","*");
+        cosmin.add("Access-Control-Allow-Origin", "*");
         return new ResponseEntity<List<User>>(users, cosmin, HttpStatus.OK);
     }
 
@@ -34,14 +47,14 @@ public class UsersController {
     }
 
     @RequestMapping(path = "/user/{id}", method = RequestMethod.GET)
-    public ResponseEntity<User> getUserById(@PathVariable String id) {
+    public ResponseEntity<User> getUserById(@PathVariable String id) throws Exception {
         User user = service.getUserById(id);
         return new ResponseEntity<>(user, new HttpHeaders(), HttpStatus.OK);
     }
 
     @RequestMapping(path = "/users", method = RequestMethod.POST)
     public ResponseEntity<User> createOrUpdateUser(@RequestBody User user) {
-        User newUser = service.createOrUpdate(user, user.getAge(), user.getFirstName(), user.getLastName(), user.getMedicalHistoryId(), user.getContact(), user.getAddress() );
+        User newUser = service.createOrUpdate(user, user.getAge(), user.getFirstName(), user.getLastName(), user.getMedicalHistoryId(), user.getContact(), user.getAddress());
 
         return new ResponseEntity<User>(newUser, new HttpHeaders(), HttpStatus.CREATED);
     }

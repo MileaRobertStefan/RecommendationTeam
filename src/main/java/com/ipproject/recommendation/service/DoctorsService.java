@@ -4,6 +4,7 @@ import com.ipproject.recommendation.models.Contact;
 import com.ipproject.recommendation.models.Doctor;
 import com.ipproject.recommendation.models.Workplace;
 import com.ipproject.recommendation.repository.DoctorsRepository;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +32,11 @@ public class DoctorsService {
         return repository.findDoctorByFirstNameAndLastName(firstName, lastName);
     }
 
-    public Doctor getDoctorById(String id) {
-        return repository.findDoctorById(id);
+    public Doctor getDoctorById(String id) throws Exception {
+        if(ObjectId.isValid(id)) {
+            return repository.findDoctorById(id);
+        }
+        else throw new Exception("Invalid id");
     }
 
     public Doctor createOrUpdate(Doctor doctor, Integer age, String firstName, String lastName, List<String> speciality,
@@ -54,11 +58,11 @@ public class DoctorsService {
     }
 
     public List<Doctor> find(String gender, Integer amountOfMoney, String type) {
-        return  repository.find(type,gender,amountOfMoney);
+        return repository.find(type, gender, amountOfMoney);
     }
 
     public List<Doctor> findByZone(String gender, Integer amountOfMoney, String type, String speciality) {
-        return  repository.findByZone(type,gender,amountOfMoney, speciality);
+        return repository.findByZone(type, gender, amountOfMoney, speciality);
     }
 
 

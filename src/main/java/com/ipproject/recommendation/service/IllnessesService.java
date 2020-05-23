@@ -2,6 +2,7 @@ package com.ipproject.recommendation.service;
 
 import com.ipproject.recommendation.models.Illness;
 import com.ipproject.recommendation.repository.IllnessesRepository;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,10 @@ public class IllnessesService {
     }
 
     public Illness getIllnessesById(String id) {
-        return repository.findIllnessById(id);
+        if(ObjectId.isValid(id)){
+            return repository.findIllnessById(id);
+        }
+        else return null;
     }
 
     public Illness createOrUpdate(Illness illness, String name, String description, List<String> symptoms, List<String> complications, List<String> medication) {
